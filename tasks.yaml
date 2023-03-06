@@ -1,0 +1,14 @@
+'67':
+  'False':
+    ' How do you pass arguments to an Async Function?9': async function ()
+    ' What is the difference between an Async Function and a regular Function?5': one
+      performs a specific tasks and returns a value, async is able to pause a task
+      while running another
+    ' What is the keyword used to wait for an Async Function to finish?7': async wait
+    ' What is the purpose of an Async Function?3': to perform a task when another
+      task isnt currently running thus utilizing cpu usage
+  'True':
+    ' What is an Async Function?2': an async function is one that performs other tasks
+      while another is not currently running
+    ' What is the keyword used to define an Async Function?6': async
+    ' What is the syntax for an Async Function?4': async function name()

@@ -1,0 +1,53 @@
+{% extends "landing_page.html" %}
+{% block content %} 
+<div class="register">
+    <form class="new-form" method="POST" action="">
+    {{ form.hidden_tag() }}
+        <fieldset class="new-input">
+            <legend class="border-bottom mb-4" id="leg">Botschedule</legend>
+            <div class="new-input">
+                     {{ form.email.label(class="form-control-label") }}
+                     {% if form.email.errors %}
+                         {{ form.email(class="form-control form-control-sm is-invalid") }}
+                         <div class="invalid-feedback">
+                             {% for error in form.email.errors %}
+                                 <span>{{ error }}</span>
+                             {% endfor %}
+                         </div>
+                     {% else %}
+                         {{ form.email(class="form-control form-control-sm") }}
+                      {% endif %}
+                  </div>
+                <div class="new-input">
+                    {{ form.password.label(class="form-control-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control form-control-sm") }}
+                        {% endif %}
+                 </div>
+                 <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+              </fieldset>
+             <div class="new-input">
+                 {{ form.submit(class="btn btn-outline-info") }}
+             </div>
+             <small class="text-muted ml-2">
+                <a href="#">Forgot Password?</a>
+            </small>
+         </form>
+         </div>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need An Account? <a class="ml-2" href="{{ url_for('Main.signup') }}">Sign Up Now</a>
+            </small>
+        </div>
+     {% endblock content %}
+

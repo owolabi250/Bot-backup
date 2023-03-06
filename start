@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+start="console.py"
+
+    if [ "$start" ];
+    then
+        python3 "$start"
+    else
+        echo "failed to start"
+    fi

@@ -1,0 +1,1 @@
+{"id": "cmpl-6rD7xev8ivVCi5QI865TE3Tq4X3Qc", "object": "text_completion", "created": 1678139865, "model": "text-davinci-003", "choices": [{"text": "\n\nHi there! How can I help you?", "index": 0, "logprobs": null, "finish_reason": "stop"}], "usage": {"prompt_tokens": 1, "completion_tokens": 11, "total_tokens": 12}}
