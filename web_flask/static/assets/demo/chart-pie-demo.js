@@ -37,9 +37,9 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: courses,
+      labels: courses,
     datasets: [{
-      data: avg,
+        data: avg,
       backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745',  '#FFA500',
                         '#800080', '#964B00', '#FF0000', '#FF00FF', '#FFD700', 
                         '#FF8C00', '#FF6347', '#FF4500', '#FF1493', '#FF00FF',
@@ -52,5 +52,7 @@ var myPieChart = new Chart(ctx, {
                         '#FFC0CB', '#FFD700', '#FF00FF', '#FF1493', '#FF4500', 
                         '#FF6347', '#FF8'],
     }],
+
   },
 });
+

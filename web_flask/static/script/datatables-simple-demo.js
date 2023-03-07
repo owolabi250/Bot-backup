@@ -85,4 +85,20 @@ $(document).ready(function() {
 });
 
 
-
+$(document).ready(function() {
+        getQuote(); // Call getQuote() function on page load
+		setInterval(getQuote, 60000);
+        function getQuote() {
+				$.ajax({
+					url: "https://api.adviceslip.com/advice",
+					type: 'GET',
+					dataType: 'json',
+					success: function(data) {
+						$('#get-quote').text(data.slip.advice);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log('Error: ' + textStatus + ' - ' + errorThrown);
+					}
+				});
+        };
+	});

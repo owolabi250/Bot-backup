@@ -75,6 +75,13 @@
     scroll-behavior: smooth;
   }
 }
+.datatable-info {
+    color: #000000;
+}
+
+.datatable-dropdown {
+    color: #000000;
+}
 
 #myPieChart {
   color: #ffffff;
@@ -98,7 +105,6 @@
   flex-direction: column;
 
 }
-
 .sent-message {
   background-color: #f1f0f0;
   border-radius: 30px;
@@ -244,7 +250,7 @@
   resize: vertical;
 }
 #table-back {
-    background-color: #D3D3D3;
+    background-color: transparent;
     overflow-x: auto;
 }
 
@@ -291,7 +297,7 @@ textarea::placeholder {
   overflow: hidden;
 
 }
-.remove-bin:active {
+.remove-bin:hover {
     box-shadow: 0 0 0 5px #FF5349;
   background-color: #000000;
   color: #FF5349;
@@ -312,7 +318,7 @@ textarea::placeholder {
     overflow: hidden;
     
     }
-.set-alarm:active {
+.set-alarm:hover {
     box-shadow: 0 0 0 5px #39FF14;
     background-color: #000000;
     color: #39FF14;
@@ -321,10 +327,10 @@ textarea::placeholder {
 
 #table-dash {
     position: relative;
-    background-color: #000000;
-    border: .1em solid #000000;
-    color: #FFFFFF;
-    overflow-x: auto;
+    background-color: transparent;
+   /* border: .1em solid #000000;*/
+    color: #000000;
+   /* overflow-x: auto; */
 }
 
 .edit-btn {
@@ -341,7 +347,7 @@ textarea::placeholder {
     overflow: hidden;
     }
 
-.edit-btn:active {
+.edit-btn:hover {
     box-shadow: 0 0 0 5px #00FFFF;
     background-color: #000000;
     color: #39FF14;
@@ -361,7 +367,7 @@ textarea::placeholder {
     overflow: hidden;
     }
 
-.create-btn:active {
+.create-btn:hover {
     box-shadow: 0 0 0 5px #FFD700;
     background-color: #000000;
     color: #39FF14;

@@ -16,6 +16,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+             
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="{{ url_for('Main.view') }}"><b>BotSchedule</b></a>
             <!-- Sidebar Toggle-->
@@ -48,6 +49,7 @@
                     </ul>
                 </li>
             </ul>
+        
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -67,32 +69,27 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">All</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Daily</a>
-                                    <a class="nav-link" href="layout-static.html">Upcoming</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Missed</a>
+                                    <a class="nav-link" href="{{ url_for('Main.view') }}">All</a>
+                                    <a class="nav-link" href="{{ url_for('Main.daily') }}">Daily</a>
+                                    <a class="nav-link" href="{{ url_for('Main.upcoming') }}">Upcoming</a>
+                                    <a class="nav-link" href="{{ url_for('Main.missed') }}">Missed</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Quiz
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Past Quiz
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Start Quiz
-                                        
-                                    </a>
-                                    
-                                </nav>
-                            </div>
+                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                    Quiz
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                        <a class="nav-link" href="{{ url_for('Main.quiz') }}">
+                                        Start New Quiz
+                                        </a>
+                                        <a class="nav-link" href="{{ url_for('Main.quiz') }}">
+                                            View Past Quiz
+                                        </a>
+                                    </nav>
+                                </div>
                             <div class="sb-sidenav-menu-heading">Features</div>
                             <a class="nav-link" href="{{ url_for('Main.help') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area" onclick="ShowBox();"></i></div>
@@ -122,6 +119,23 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
+
+
+
+                    <div class="card border-primary mb-3" id="about-body">
+                         <div class="card-header">
+                           Daily Quotes
+                         </div>
+                        <div class="card-body">
+                            <div>
+                                <blockquote class="blockquote mb-0">
+                                    <p class="quotes card-text" id="get-quote">....</p>
+                                    <footer class="blockquote-footer"> <cite title="Source" id="author" style="color:#4FC3F7">Unknown</cite></footer>
+                                 </blockquote>
+                             </div>
+                         </div>
+                     </div>
+                     <br>
                         <!-- <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -171,25 +185,25 @@
                         </div> -->
                         <div class="row">
                             <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header" id="table-dash">
+                                <div class="card mb-4" id="chart-body">
+                                    <div class="card-header" style="color: #000000">
                                         <i class="fas fa-chart-area me-1" id="tab"></i>
                                         Topics focused on most
                                     </div>
-                                    <div class="card-body" id="table-back"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-body" ><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header" id="table-dash">
+                                <div class="card mb-4" id="chart-body">
+                                    <div class="card-header" style="color: #000000">
                                         <i class="fas fa-chart-bar me-1" id="tab"></i>
                                         Average on Tasks completed
                                     </div>
-                                    <div class="card-body" id="table-back"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <div class="card mb-4" id="chart-body">
                             <div class="card-header" id="table-dash">
                                 <i class="fas fa-table me-1" id="tab"></i>
                                 Monthly Schedules
@@ -204,7 +218,7 @@
                                     </button>
 
 			                </div>
-                            <div class="card-body" id= "table-back">
+                            <div class="card-body mb-4" id="table-back">
                                 <table class="table table-hover" id="datatablesSimple">
                                     <thead>
                                         <tr>

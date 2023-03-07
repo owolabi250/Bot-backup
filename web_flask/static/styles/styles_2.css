@@ -170,6 +170,41 @@ td {
     color: #FFFFFF
 }
 
+.card-img-top {
+    display: block; /* make the image a block element to center it */
+	margin: auto; /* center the image horizontally */
+	max-width: 50%; /* make the image responsive to the container */
+	height: auto; /* maintain aspect ratio of the image */ 
+}
+#about-page {
+    background-color: #fdf6f6;
+}
+.about-col {
+    height: 600%;
+    padding: 10px;
+    max-width: 75%;
+    margin-right: 4em;
+    margin-left: 6em;
+}
+#about-body {
+    color: #FFFFFF;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 32px;
+    background: linear-gradient(145deg, #333333, #cacaca);
+    box-shadow:  31px 31px 50px #c3c3c3,
+             -31px -31px 50px #fdfdfd;
+}
+
+#chart-body{
+    color: #FFFFFF;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50px;
+    background: linear-gradient(145deg, #f0ebeb, #cac6c6);
+    box-shadow:  27px 27px 39px #b8b4b4,
+             -27px -27px 39px #ffffff;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
