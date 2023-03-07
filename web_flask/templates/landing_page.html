@@ -1,119 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Botschedule - Welcome</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="static/styles/styles_2.css" rel="stylesheet" />
-        <script src="https://code.iconify.design/iconify-icon/1.0.4/iconify-icon.min.js"></script>
-    </head>
-    {% block content %}
-    <body>
+  <head>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.4/iconify-icon.min.js"></script>
 
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Botschedule</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Header-->
-        <header class="py-5">
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                    <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">Botschedule</h1>
-                        <p class="fs-4">Streamlining and personalising your learning journey through self-customised scheduling and resource recommendations</p>
-                        <a class="btn btn-primary btn-lg" href="{{ url_for('Main.signup') }}">Sign up</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Page Content-->
+    <meta charset="utf-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Welcome - BotSchedule</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="static/styles/landstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 
-        <section class="pt-4">
-            <div class="container px-lg-5">
-                <!-- Page Features-->
-                <div class="row gx-lg-5">
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="fluent-mdl2:chat-bot" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Chatbot</h2>
-                                <p class="mb-0">Interact with a chatbot, ask questions pertaining to daily task topics and get resource recommendations</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="ic:round-create-new-folder" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Create</h2>
-                                <p class="mb-0">Customize your learning experience, create date, course and topic</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="mdi:invoice-schedule-outline" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Schedule</h2>
-                                <p class="mb-0">Invoke your dashboard for a more personalized experience, enables you to view, update and delete set schedule</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="noto-v1:books" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Recommendations</h2>
-                                <p class="mb-0">Get daily resource recommendations in line with daily study topics, request pdfs, youtube videos and audio books resources </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="arcticons:reminder" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Reminder</h2>
-                                <p class="mb-0">Set reminder for a daily task and get a notification sent to you via email or phone number</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><iconify-icon icon="material-symbols:chart-data-outline-rounded" height="45"></iconify-icon></div>
-                                <h2 class="fs-4 fw-bold">Plot Graph</h2>
-                                <p class="mb-0">Be in touch with your level of productivity, plot a graph for a visual representaion of tasks completed and average score earned</p>
-                            </div>
-                        </div>
-                    </div>
+  </head>
+  <body id="page-top">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+    <!-- Navigation-->
+
+    <nav
+      class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+      id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="#">BotSchedule</a>
+        <button
+          class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.reg') }}"
+                >Signup</a
+              >
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.Access') }}"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.about') }}"
+                >About</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Masthead-->
+{% block about %}
+    <header class="masthead bd-color text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5" src="static/assets/img/favv.png" alt="logo" />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading mb-0">BotSchedule</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">
+          Streamlining and personalising your learning journey through self-customised scheduling and resource recommendations
+        </p>
+      </div>
+    </header>
+    <!-- Portfolio Section-->
+    <section class="page-section portfolio">
+      <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2
+          class="page-section-heading text-center text-uppercase text-secondary mb-0">
+          
+        </h2>
+       
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center">
+          <!-- Portfolio Item 1-->
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
                 </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/1.png"
+                alt="..."/>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Nomynameisjamees.tech 2023</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="static/script/scripts.js"></script>
-        {% endblock %}
-    </body>
+          </div>
+          <!-- Portfolio Item 2-->
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div
+              class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/2.png"
+                alt="..."/>
+            </div>
+          </div>
+          <!-- Portfolio Item 3-->
+          <div class="col-md-6 col-lg-4 mb-5">
+            <div
+              class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/3.png"
+                alt="..."/>
+            </div>
+          </div>
+          <!-- Portfolio Item 4-->
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div
+              class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/4.png"
+                alt="..."/>
+            </div>
+          </div>
+          <!-- Portfolio Item 5-->
+          <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+            <div
+              class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/5.png"
+                alt="..."/>
+            </div>
+          </div>
+          <!-- Portfolio Item 6-->
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="portfolio-item mx-auto"
+              data-bs-toggle="modal">
+              <div
+                class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                <div
+                  class="portfolio-item-caption-content text-center text-white">
+                  <i class="fas fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="static/assets/img/6.png"
+                alt="image6"/>
+            </div>
+          </div>
+        </div>
+    </section>
+
+ 
+
+
+    <!-- Copyright Section-->
+   <footer class="py-4 bg-dark mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Nomynameisjamees 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scriptsland.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
+
 </html>
+{% endblock %}

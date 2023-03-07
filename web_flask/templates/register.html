@@ -1,72 +1,25 @@
-{% extends "landing_page.html" %}
-{% block content %}
-    <div class="register">
-        <form class="new-form" method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="new-input">
-                <legend class="border-bottom mb-4">Join Today</legend>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
-
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-sm") }}
-                    {% endif %}
-                </div>
-                <div class="new-input">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-sm") }}
-                    {% endif %}
-                </div>
-                <div class="new-input">
-                    {{ form.password.label(class="form-control-label") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-sm") }}
-                    {% endif %}
-                </div>
-                <div class="new-input">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                    {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="form-control form-control-sm is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirm_password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.confirm_password(class="form-control form-control-sm") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="new-input">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </form>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('Main.login') }}">Sign In</a>
-        </small>
-    </div>
-    </div>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="static/styles/first.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <div class="align-center">
+    <form class="form register">
+      <span class="signup">Sign Up</span>
+      <input type="email" placeholder="Email address" class="form--input form-control">
+      <input type="password" placeholder="Password" class="form--input">
+      <input type="password" placeholder="Confirm password" class="form--input">
+      
+      <button class="form--submit">
+          Sign up
+      </button>
+    </form>
+  </div>
+</body>
+</html>
