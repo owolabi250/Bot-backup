@@ -15,10 +15,16 @@
       <input type="email" placeholder="Email address" class="form--input form-control">
       <input type="password" placeholder="Password" class="form--input">
       <input type="password" placeholder="Confirm password" class="form--input">
-      
+
       <button class="form--submit">
-          Sign up
+          <a href="{{ url_for('Main.login') }}">Signup</a>
       </button>
+      <br>
+      <span class="bottom_text" style="font-size:small;">Already have an account? <a href="{{ url_for('Main.login') }}"> <label class="swtich" for="register_toggle" style="color: black;font-size: small;">Login</label></a> </span>
+
+      <!-- <button class="form--submit">
+          Sign up
+      </button> -->
     </form>
   </div>
 </body>

@@ -1,0 +1,223 @@
+.form {
+  background-color: white;
+  padding: 3.125em;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 5px 5px 15px -1px rgba(0,0,0,0.75);
+  align-items: center;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.forget{
+  width: 350px;
+  height: 250px;
+}
+
+.register{
+  width: 350px;
+  height: 350px;
+}
+
+.login{
+  width: 350px;
+  height: 400px;
+}
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  text-align: center;
+}
+
+.align-center {
+  margin-top: 0;
+}
+.signup {
+  color: rgb(77, 75, 75);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
+  margin-bottom: 0.5em;
+}
+
+.form--input {
+  width: 100%;
+  margin-bottom: 1.25em;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 0.8em;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+
+.form--input:focus {
+  border: 1px solid #639;
+  outline: none;
+}
+
+.form--marketing {
+  display: flex;
+  margin-bottom: 1.25em;
+  align-items: center;
+}
+
+.form--marketing > input {
+  margin-right: 0.625em;
+}
+
+.form--marketing > label {
+  color: grey;
+}
+
+.checkbox, input[type="checkbox"] {
+  accent-color: #162D16;
+}
+
+.form--submit {
+  width: 50%;
+  padding: 0.625em;
+  border-radius: 5px;
+  color: white;
+  background-color: #162D16;
+  border: 1px dashed #162D16;
+  cursor: pointer;
+}
+
+.form--submit:hover {
+  color: #162D16;
+  background-color: #18a818;
+  border: 1px dashed #162D16;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+
+/* about page styling */
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-container:after {
+  content: "";
+  display: table;
+  clear: both;
+  display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-template-rows: 1fr 1fr;
+ gap: 5px;
+ overflow: visible;
+}
+
+.card-2{
+  position: absolute;
+  right: 50%;
+  
+}
+.card {
+  /* display: grid; */
+  margin-bottom: 20px;
+  width: 45%;
+  vertical-align: top;
+  margin-right: 5%;
+  height: 100%;
+  background: #162D16;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.card span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  padding-top: 1em;
+  font-size: 2em;
+  margin-top: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.card .info {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  padding-top: 0.1em;
+  font-size: 1em;
+  margin: 1em;
+  margin-top: 2em;
+}
+
+a{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: large;
+}
+.card .img {
+  width: 5.2em;
+  height: 5.2em;
+  /* background: white; */
+  padding-top: 1em;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 1.7em;
+}
+
+.card .share {
+  text-align: center;
+  margin-top: 1.8em;
+}
+
+.card a {
+  color: white;
+  transition: .4s ease-in-out;
+}
+
+.card a:hover {
+  color: rgb(36, 116, 221);
+}
+
+.card button {
+  padding: 0.8em 1.7em;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  margin-top: 2em;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+}
+
+.card button:hover {
+  background: rgb(36, 116, 221);
+  color: white;
+}
+
+.bottom_text {
+  font-size: 0.65em;
+}
+
+.bottom_text .swtich {
+  font-weight: 700;
+  cursor: pointer;
+}

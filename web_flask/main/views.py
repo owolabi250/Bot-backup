@@ -23,6 +23,27 @@ def front_page():
     return render_template('landing_page.html')
 
 
+@Main.route('/reset')
+def reset():
+    return render_template('forget.html')
+
+@Main.route('/reg')
+def reg():
+    # bot = Create_Schedule()
+    # dic = bot.View('login')
+    return render_template('register.html')
+
+@Main.route('/Access')
+def Access():
+    # bot = Create_Schedule()
+    # dic = bot.View('login')
+    return render_template('login.html')
+
+@Main.route('/about')
+def about():
+    return render_template('about.html')
+
+
 @Main.route('/missed')
 def missed():
     bot = Create_Schedule()
