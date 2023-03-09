@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 $(document).ready(function() {
+    const reminderButton = $(".send-btn");
     $('.set-alarm').click(function() {
         if ($("#datatablesSimple tbody tr").find("input[name='row-radio']").length > 0) {
             return;
@@ -18,7 +19,7 @@ $(document).ready(function() {
             var currentDate = new Date().toISOString().slice(0,10);
             var dateValue = $(this).closest("tr").find("td:nth-child(3)").text();
 	    if (new Date(Date.parse(dateValue)) >= new Date(currentDate) || new Date(Date.parse(dateValue)).toLocaleDateString() === new Date().toLocaleDateString()){
-                var radioButton = $("<input type='radio' name='row-radio' class='radio-button'>");
+                var radioButton = $("<input type='radio' name='row-radio' class='form-check-input mt-0'>");
                 $(this).closest("tr").find("td:first-child").prepend(radioButton);
             }
         });
@@ -32,20 +33,21 @@ $(document).ready(function() {
             var reminderDateObj;
             var now;
             $(document).on("click", ".send-btn", function() {
+                reminderButton.prop("disabled", true);
                 reminderDateObj = dateObj;
                 now = new Date();
                 var secondsUntilReminder = Math.floor((reminderDateObj.getTime() - now.getTime()) / 1000);
                 if (reminderDateObj >= now){
 
                     console.log("Reminder set for " + secondsUntilReminder + " seconds from now.");
-                    setInterval(function() {
-                        const dateObj = new Date(Date.now() + secondsUntilReminder * 1000);
-                        var postData = {
+                    var postData = {
                                 "text": "Don't forget to study your topic for the day" + topicValue,
                                 "Time": timeValue,
                                 "Date": dateValue
                                 };
-                        $.ajax({
+                    console.log(postData);
+            
+                      $.ajax({
                             url: "http://127.0.0.1:5001/api/v1/reminder/",
                             type: "POST",
                             data: JSON.stringify(postData),
@@ -62,7 +64,9 @@ $(document).ready(function() {
                                     setTimeout(function() {
                                             message.hide();
                                         }, 5000);
+
                                     },
+                                    
                             error: function(error) {
                                 var message = $("<div>");
                                 message.addClass("flash-message fail");
@@ -74,11 +78,11 @@ $(document).ready(function() {
                                 message.hide();
                                                 }, 5000);
                                     }
-                    });
-                    }, secondsUntilReminder * 1000);
+                    }); 
                 } else {
                     alert("Reminder time is not valid.");
                     }
+                this.remove();
             });
         });
     });
