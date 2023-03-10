@@ -37,7 +37,7 @@ class Create_Schedule(User):
                             Updated_at = None
                             )
 
-   # saves newly created instance of the User class and commits to database 
+           # saves newly created instance of the User class and commits to database 
     def Save(self):
         """
             class method saves the newly created class instance to the database
@@ -46,7 +46,8 @@ class Create_Schedule(User):
         models.storage.save()
         models.storage.close()
         return True
-    # deletes an instance of the User class and removes data from database
+          
+     # deletes an instance of the User class and removes data from database
     def Delete(self, my_id, deldata=None):
         """
             Deletes and modifies data queried from the database by object ID
@@ -58,7 +59,7 @@ class Create_Schedule(User):
             models.storage.delete(deldata)
             models.storage.save()
             models.storage.close()
-            
+
 
     def View(self, choice=None):
         """
@@ -126,6 +127,8 @@ class Create_Schedule(User):
             else:
                 print("data empty")
         models.storage.save()
+
+   
 
     def bm_update(self, my_id, attr_dict=None):
         """
