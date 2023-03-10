@@ -5,6 +5,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from datetime import datetime
 from flask_mail import Mail
+from flask_login import login_required
 from . import Main
 from .. import db
 import os
@@ -34,34 +35,40 @@ def about():
 
 
 @Main.route('/missed')
+@login_required
 def missed():
     bot = Create_Schedule()
     dic = bot.View('missed')
     return render_template('task_status.html', data=dic)
 
 @Main.route('/daily')
+@login_required
 def daily():
     bot = Create_Schedule()
     dic = bot.View('daily')
     return render_template('task_status.html', data=dic)
 
 @Main.route('/View')
+@login_required
 def view():
     bot = Create_Schedule()
     doc = bot.View()
     return render_template('index.html', data=doc)
 
 @Main.route('/upcoming')
+@login_required
 def upcoming():
     bot = Create_Schedule()
     dic = bot.View('upcoming')
     return render_template('task_status.html', data=dic)
 
 @Main.route('/new')
+@login_required
 def new():
     return render_template('table.html')
 
 @Main.route('/quiz')
+@login_required
 def quiz():
     global quiz_data # declare global variable
     

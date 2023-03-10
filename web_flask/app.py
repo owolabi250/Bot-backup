@@ -1,5 +1,5 @@
 import os
-from web_flask import create_app, db
+from . import create_app, db
 from flask_migrate import Migrate
 
 

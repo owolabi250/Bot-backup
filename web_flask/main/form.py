@@ -20,16 +20,14 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Sign up')
 
     def validate_username(self, username):
-        data = models.storage.view(user_id)
-        for k, v in data.items():
-            if data[k].User_name in username:
-                raise ValidationError('Username already taken')
+        data = models.storage.access(username.data, 'User_name', user_id)
+        if data:
+            raise ValidationError('Username already taken')
 
     def validate_email(self, email):
-        user = models.storage.view(user_id)
-        for k, v in user.items():
-            if user[k].Email in email:
-                raise ValidationError('Email already taken')
+        data = models.storage.access(email.data, 'Email', user_id)
+        if data:
+            raise ValidationError('Email already taken')
 
 
 

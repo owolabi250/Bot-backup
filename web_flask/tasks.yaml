@@ -796,3 +796,13 @@
 7: 8. What is the difference between margin and padding in CSS?
 8: 9. How do you set the background color of an element using CSS?
 9: 10. How do you set the font family of an element using CSS
+0: 1. What is an Async function?
+1: 2. What is the purpose of using an Async function?
+2: 3. What is the syntax for an Async function?
+3: 4. What is the difference between an Async function and a normal function?
+4: 5. What is the keyword used to create an Async function?
+5: 6. What is the keyword used to wait for an Async function to finish?
+6: 7. What is the keyword used to handle errors in an Async function?
+7: 8. What is the keyword used to return a value from an Async function?
+8: 9. How can you pass arguments to an Async function?
+9: 10. What is the keyword used to create a promise in
