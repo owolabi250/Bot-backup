@@ -38,6 +38,16 @@ class DBstorage:
             my_dict[key] = task
         return (my_dict)
 
+    def access(self, obj, key, arg):
+        index = {'Email': user_id.Email,
+                 'Password' : user_id.Password,
+                 'User_name' : user_id.User_name,
+                 'id' : user_id.id
+                 }
+        query = self.__session.query(arg)
+        data = query.filter(index[key] == obj).first()
+        return data
+
     def new(self, obj):
         """
             add the object to the current database session

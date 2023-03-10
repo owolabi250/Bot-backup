@@ -76,49 +76,6 @@ class Checker:
             json.dump(response_dict, file)
         return response_dict
 
-
-    def Review(self, my_id):
-        """
-            class method modifies the class instance based on the provided
-            parameters
-        """
-        allTask = self.schedule.View()
-        if my_id in allTask:
-            print('''Course average are calculated based on the following parameters,
-                5. Topic Fully Covered, with practice  5pt
-                4. Topic covered without practice 4pt
-                3. Topic 50% covered 3pt
-                2. Topic 25% covered  2pt
-                1. just started 1pt.'''
-                    )
-            print(f"\n>>>completed the following tasks? {allTask[my_id]} <<<\n")
-            choice = int(input("rate your productivity based on above: "))
-            score = None
-            if choice == 5:
-                score = (100/100) * 100
-                bot = self.schedule.Update(my_id, score, 4)
-                return bot
-            elif choice == 4:
-                score = (75/100) * 100
-                bot = self.schedule.Update(my_id, score, 4)
-                return bot
-            elif choice == 3:
-                score = (50/100) * 100
-                bot = self.schedule.Update(my_id, score, 4)
-                return bot
-            elif choice == 2:
-                score = (25/100) * 100
-                bot = self.schedule.Update(my_id, score, 4)
-                return bot
-            elif choice == 1:
-                score = 0
-                bot = self.schedule.Update(my_id, score, 4)
-                return bot
-            else:
-                print("invalid selection, please read above prompt")
-        else:
-            print("Course ID not in list")
-
     def Help(self, message=None):
         """
             class method uses the openAI API to invoke a chatbot to recommend

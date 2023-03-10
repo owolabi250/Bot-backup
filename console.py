@@ -146,26 +146,6 @@ class BOT(cmd.Cmd):
         except KeyboardInterrupt:
             print("process terminated")
 
-    def do_Checker(self, arg):
-        """ Run the checker for a self assessment base on your 
-            performance on the days task
-            Usage run the command Cheker [course ID]
-        """
-        try:
-            bot = Checker()
-            parser = argparse.ArgumentParser()
-            parser.add_argument(dest='my_id', type=int, help='enter Id to review')
-            args = parser.parse_args(arg.split())
-            if len(arg) == 0:
-                print("enter course ID run command [help Checker for guidelines]")
-            else:
-                bot.Review(args.my_id)
-                print(">>> Updated")
-        except ValueError as e:
-            print("error run command [help Checker] for guidelines", e)
-        except SystemExit as s:
-            print("system error", s)
-
     def do_AI(self, arg):
         """ the AI is a personal assistant that helps recommend resources to read
             alongsides answers questions regarding vast range of topic. to use,

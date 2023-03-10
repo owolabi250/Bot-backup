@@ -4,6 +4,7 @@ import json
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from flask_login import UserMixin
 
 Base = declarative_base()
 
@@ -54,7 +55,7 @@ class User(Base):
 
 
 
-class user_id(Base):
+class user_id(Base, UserMixin):
     """
         creates a class representation of the user info 
     """
@@ -71,3 +72,6 @@ class user_id(Base):
             returns string representation of class objects
         """
         return f"id : {self.id}, username: {self.User_name} email: {self.Email}"
+
+    def is_active(self):
+        return True 
