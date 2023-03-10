@@ -77,4 +77,6 @@ def reminder():
         req_json = request.get_json()
         bot.Twilio(**req_json)
         return jsonify({"Success" : "Reminder sent"}), 200
+    else:
+        abort(404, 'reminder not valid')
 

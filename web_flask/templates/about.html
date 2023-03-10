@@ -27,15 +27,6 @@
               <a class="navbar-brand ps-3" href="{{ url_for('Main.view') }}"><b>BotSchedule</b></a>
               <!-- Sidebar Toggle-->
              <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-                  {% with messages = get_flashed_messages(with_categories=true) %}
-                          {% if messages %}
-                                  {% for category, message in messages %}
-                                        <div class="alert alert-{{ category }}">
-                                            {{ message }}
-                                        </div>
-                                  {% endfor %}
-                           {% endif %}
-                   {% endwith %}
                    <!-- Navbar Search-->
                     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                   <!-- <div class="input-group">
@@ -47,12 +38,12 @@
               <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.reg') }}"
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.signup') }}"
                 >Signup</a
               >
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.Access') }}"
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('Main.login') }}"
                 >Login</a
               >
             </li>

@@ -3,9 +3,11 @@ import models
 from models.baseModel import user_id
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 class Login(user_id):
+    key = None
     __data = models.storage.view(user_id)
-    password_hash = __data[1].Password
+    password_hash = __data[key].Password
     
     
     @property

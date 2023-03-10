@@ -2,42 +2,78 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="static/styles/first.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
 </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <div class="container">
+      <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}{% endblock %}
+        </div>
   <div class="align-center">
-    <form class="form login">
-      <span class="signup">Login</span>
-      <input type="email" placeholder="Email address" class="form--input form-control">
-      <input type="password" placeholder="Password" class="form--input">
-      
-      <div class="form--marketing">
-          <input id="okayToEmail" type="checkbox">
-          <label for="okayToEmail" class="checkbox">
-            Remember me
-          </label>
+    <form class="form login" method='POST' action=''>
+        {{ form.hidden_tag() }}
+    <fieldset class="form-group" id="log-form">
+    <legend class="signup">LOGIN</legend> 
+      <div class="input-group mb-3">
+          {{ form.email.label(class="form-control-label") }}
+          {% if form.email.errors %}
+            {{ form.email(class="form-control form-control-sm is-invalid") }}
+             <div class="invalid-feedback">
+                 {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                  {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class="form-control form-control-sm") }}
+            {% endif %}
+        </div>
+        <br>
+        <div class="input-group mb-3">
+           {{ form.password.label(class="form-control") }}
+           {% if form.password.errors %}
+           {{ form.password(class="form-control form-control-sm is-invalid") }}
+           <div class="invalid-feedback">
+               {% for error in form.password.errors %}
+               <span>{{ error }}</span>
+               {% endfor %}
+            </div>
+            {% else %}
+                {{ form.password(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <br>
+        <div class="form-check">
+            {{ form.remember(class="form-check-input") }}
+            {{ form.remember.label(class="form-check-label") }}
+        </div>
+    </fieldset>
+      <div class="form-group">
+          {{ form.submit(class="btn btn-success") }}
       </div>
-      <button class="form--submit">
-          <a href="{{ url_for('Main.view') }}">Login</a>
-      </button>
+        <br>
+      <span class="bottom_text btn btn-link" style="font-size:small;">Don't have an account? <a href="{{ url_for('Main.signup') }}"> <label class="swtich" for="register_toggle" style="color: black;font-size: small;">Sign up</label></a> </span>
       <br>
-      <span class="bottom_text" style="font-size:small;">Don't have an account? <a href="{{ url_for('Main.reg') }}"> <label class="swtich" for="register_toggle" style="color: black;font-size: small;">Sign up</label></a> </span>
-      <br>
-      <span class="bottom_text" style="font-size:small;">Forget Password? <a href="{{ url_for('Main.reset') }}"> <label class="swtich" for="register_toggle" style="color: black;font-size: small;">Click here</label></a> </span>
-    </form>
-      <!-- <small>Forget Password? <a href="{{ url_for('Main.reset') }}" style="color: blue;">Click here</a></small> -->
-      <!-- <a href="{{ url_for('Main.reg') }}" style="color: blue;"><small>Don't have an account? Signup here</small></a> -->
+      <span class="bottom_text btn btn-link" style="font-size:small;">Forget Password? <a href="{{ url_for('Main.reset') }}"> <label class="swtich" for="register_toggle" style="color: black;font-size: small;">Click here</label></a> </span>
 
-      <!-- <a href="{{ url_for('Main.reset') }}">Forgot Password?</a>
-      <p>Don't have an account?</p><a href="{{ url_for('Main.reg') }}">Signup</a> -->
-
-      <!-- <a class="btn " href="{{ url_for('Main.view') }}" role="button">Link</a> -->
     </form>
   </div>
+</div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

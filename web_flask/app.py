@@ -8,6 +8,7 @@ from flask_migrate import Migrate
     It creates the application instance and runs it.
 """
 app = create_app('default')
+app.config['SECRET_KEY'] = "TheGhostof1984"
 migrate = Migrate(app, db)
 
 @app.route('/test')

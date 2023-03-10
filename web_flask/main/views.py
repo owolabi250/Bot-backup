@@ -27,17 +27,6 @@ def front_page():
 def reset():
     return render_template('forget.html')
 
-@Main.route('/reg')
-def reg():
-    # bot = Create_Schedule()
-    # dic = bot.View('login')
-    return render_template('register.html')
-
-@Main.route('/Access')
-def Access():
-    # bot = Create_Schedule()
-    # dic = bot.View('login')
-    return render_template('login.html')
 
 @Main.route('/about')
 def about():

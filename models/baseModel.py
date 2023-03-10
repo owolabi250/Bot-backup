@@ -61,7 +61,8 @@ class user_id(Base):
     __tablename__='User_info'
     id = Column(Integer, primary_key=True)
     User_name = Column(String(100))
-    Password = Column(String(100))
+    Email = Column(String(100))
+    Password = Column(String(300))
     Created_at = Column(DateTime, default=datetime.utcnow)
     Updated_at = Column(DateTime)
     
@@ -69,4 +70,4 @@ class user_id(Base):
         """
             returns string representation of class objects
         """
-        return f"id : {self.id}, username: {self.User_name}"
+        return f"id : {self.id}, username: {self.User_name} email: {self.Email}"
