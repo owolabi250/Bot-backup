@@ -31,11 +31,11 @@ $(document).ready(function() {
 
 // function makes a call to the openai api for the chatbot functionality 
 function chatlog () {
-// Trigger chatlog function on enter key press
+// Get user value from the input field
               var inputMsg = $("#my-chat-input").val();
               var postData = { "text" : inputMsg };
               $("#my-chat-input").val("");
-  
+// Make a POST request to the RESTFULAPI using the ajax method to invoke chatbot functionality
               $.ajax({
                   url: 'http://127.0.0.1:5001/api/v1/help/',
                   type: 'POST',
@@ -44,21 +44,24 @@ function chatlog () {
                               },
                   data: JSON.stringify(postData),
                   success: function(response) {
+// upon success get response from request and append response to the chatbot div
                       var outputMsg = Object.values(response);
                        var msg = JSON.stringify(outputMsg).replace(/\n|\[|\]/g, '');;
                       $('#nav-id').css('border', '.2em solid #39FF14');
                       console.log(outputMsg);
-                      var chatLog = "<div class='sent-message'><p id='sent'>" + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
+                      var chatLog = "<div class='sent-message'><p id='sent'>" / 
+                      + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
                         $(".chat-conversation").append(chatLog);
                       ouputMsg = {}
                   },
               error: function(jqXHR, textStatus, errorThrown) {
-                  console.log('Error', textStatus, errorThrown);
-                  $('#nav-id').css('border', '.2em solid #FF5349');
-                  var message = $("<div>");
-                  message.addClass("flash-message fail");
-                  message.text("Bot Server down please help report issue!");
-                 $("body").append(message);
+// upon error log error message and output a flash message on the chatbot div
+                console.log('Error', textStatus, errorThrown);
+                $('#nav-id').css('border', '.2em solid #FF5349');
+                var message = $("<div>");
+                message.addClass("flash-message fail");
+                message.text("Bot Server down please help report issue!");
+                $("body").append(message);
                // Automatically hide the message after a few seconds
                setTimeout(function() {
                message.hide();
