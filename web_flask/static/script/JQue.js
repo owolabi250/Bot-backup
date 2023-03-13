@@ -49,8 +49,7 @@ function chatlog () {
                        var msg = JSON.stringify(outputMsg).replace(/\n|\[|\]/g, '');;
                       $('#nav-id').css('border', '.2em solid #39FF14');
                       console.log(outputMsg);
-                      var chatLog = "<div class='sent-message'><p id='sent'>" / 
-                      + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
+                      var chatLog = "<div class='sent-message'><p id='sent'>" + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
                         $(".chat-conversation").append(chatLog);
                       ouputMsg = {}
                   },

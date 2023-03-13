@@ -4,7 +4,7 @@ from models.baseModel import user_id
 from .form import RegisterForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 import models
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user, login_required
 from .. import login_manager
 
 
@@ -42,3 +42,11 @@ def login():
         else:
             flash(f'Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@Main.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.')
+    return redirect(url_for('Main.front_page'))
+
