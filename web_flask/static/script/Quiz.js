@@ -1,3 +1,19 @@
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 $(document).ready(function() {
      $('#quiz-btn').click(function() {
         var requestsent = false
@@ -28,6 +44,9 @@ $(document).ready(function() {
          url: 'http://127.0.0.1:5001/api/v1/quiz',
          data: JSON.stringify(data),
          contentType: 'application/json',
+         beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+  },
          success: function(response) {
            console.log(response);
             var correction_button = '<button id="view-correction" class="btn btn-info">View Correction</button>';

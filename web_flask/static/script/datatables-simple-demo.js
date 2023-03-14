@@ -8,6 +8,22 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 });
 
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 $(document).ready(function() {
     const reminderButton = $(".send-btn");
     $('.set-alarm').click(function() {
@@ -54,6 +70,9 @@ $(document).ready(function() {
                             headers: {    
                                         "Content-Type" : "application/json",
                                     },
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+                        },
                             success: function(response) {
                                     var message = $("<div>");
                                     message.addClass("flash-message success");

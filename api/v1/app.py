@@ -16,7 +16,7 @@ app.url_map.strict_slashes = False
 cors = CORS(app, resources={r"/api/v1/*": {"origin": "*"}})
 
 app.register_blueprint(main_app)
-app.config['SECRET_KEY'] = "no mynameisjames"
+app.config['SECRET_KEY'] = "TheRaggedPriest"
 
 host = os.getenv('HBNB_API_HOST', '127.0.0.1')
 port = os.getenv('HBNB_API_PORT', '5000')

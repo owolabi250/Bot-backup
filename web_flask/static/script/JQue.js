@@ -8,6 +8,22 @@ function ShowBox() {
     });
 }
 
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 $(document).ready(function() {
     // Get the textarea element
     var textarea = $("#my-chat-input");
@@ -43,6 +59,9 @@ function chatlog () {
                           "Content-Type": "application/json",
                               },
                   data: JSON.stringify(postData),
+                  beforeSend: function(xhr) {
+                        xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+                    },
                   success: function(response) {
 // upon success get response from request and append response to the chatbot div
                       var outputMsg = Object.values(response);
@@ -107,6 +126,9 @@ $(document).ready(function() {
           "Content-Type": "application/json",
         },
         data: JSON.stringify(postDate),
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+        },
         success: function(response) {
           console.log(response);
           // Code to save the new table data and display success message

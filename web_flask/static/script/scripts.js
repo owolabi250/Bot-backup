@@ -41,7 +41,21 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 $(document).ready(function() {
 $('#my-btn').click(function() {
@@ -50,6 +64,9 @@ $('#my-btn').click(function() {
       $.ajax({
         url: 'http://127.0.0.1:5001/api/v1/tasks/' + id,
         type: 'DELETE',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+        },  
         success: function(data) {
            console.log(data);
             // Code to save the new table data and display success message
@@ -163,6 +180,9 @@ $(document).ready(function() {
           type: "PUT",
           data: JSON.stringify(postData),
             contentType: "application/json",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+            },
             success: function(response) {
             // send flash message upon success
               var message = $("<div>");

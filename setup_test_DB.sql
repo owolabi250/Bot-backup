@@ -21,13 +21,26 @@ GRANT SELECT ON performance_schema.* TO 'BotSchedule'@'localhost';
 
   -- delete table if exist
 
-DROP TABLE IF EXISTS `January`;
+ DROP TABLE IF EXISTS `user_info`;
+  
+    CREATE TABLE `user_info` (
+    `id` VARCHAR(200) NOT NULL,
+    `User_name` VARCHAR(50) NOT NULL,
+    `Email` VARCHAR(50) NOT NULL,
+    `Password` VARCHAR(255) NOT NULL,
+    `Created_at` VARCHAR(50) NOT NULL,
+    `Updated_at` VARCHAR(50) NULL,
+    PRIMARY KEY (`id`)
+ );
+
+
+ DROP TABLE IF EXISTS `January`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
   /*!40101 SET character_set_client = utf8 */;
 
-  --create table
-CREATE TABLE `January` (
+ CREATE TABLE `January` (
     `ID` int NOT NULL AUTO_INCREMENT,
+    `user_ID` VARCHAR(200) NOT NULL,
     `Days` VARCHAR(50),
     `Course` VARCHAR(50),
     `Topic` VARCHAR(50),
@@ -36,5 +49,7 @@ CREATE TABLE `January` (
     `Average` INT,
     `created_at` VARCHAR(50),
     `updated_at` VARCHAR(50),
-    PRIMARY KEY(`ID`)
+    PRIMARY KEY(`ID`),
+    FOREIGN KEY (`user_ID`) REFERENCES `user_info` (`id`)
   );
+

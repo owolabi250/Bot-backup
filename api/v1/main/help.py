@@ -4,29 +4,34 @@ from flask import abort, jsonify, request
 from models.Schedule import Create_Schedule as cs
 from models import storage
 from models.checker import Checker
+from .tasks import token_required
 import json
 import yaml
 
 obj = {}
 quiz_answers = {}
-bot = storage.view()
+
 
 @main_app.route('/help', methods=['GET', 'POST'])
-def help():
+@token_required
+def help(current_user):
+    ID = current_user.id
     message = {}
-    bot = Checker()
+    bot = Checker(ID)
     req_data = request.get_json()
     if request.method == 'POST':
         for text in req_data.values():
             data = bot.Help(text)
             message[text] = data
-            return jsonify(message)
+            return jsonify(message), 200
     else:
         abort(404, 'invalid request')
 
 
 @main_app.route('/quiz', methods=['GET', 'POST'])
-def quiz():
+@token_required
+def quiz(current_user):
+    ID = current_user.id
     quiz_answers = request.get_json()
     Key = None
     Value = {}
@@ -48,10 +53,10 @@ def quiz():
                 for key, values in Value.items():
                     obj[Key] = dict(zip(new_key, values))
                 data = Checker._invoke_chatbot(obj)
-                Checker.check_answers(data, int(Key))
+                Checker.check_answers(data, ID, int(Key))
                 message = {}
                 message[Key] = data
-                with open('tasks.yaml', 'w') as f:
+                with open('tasks.yaml', 'a') as f:
                     yaml.dump(message, f)
                 return jsonify(message), 200
             else:
@@ -63,4 +68,3 @@ def quiz():
             abort(404, 'invalid request')
         else:
             return jsonify(file), 200
-

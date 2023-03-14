@@ -9,13 +9,14 @@ import schedule
 current_date_time = datetime.now()
 now = current_date_time.strftime("%Y-%m-%d")
 class Reminder:
-    def __init__(self):
+    def __init__(self, usr):
+        self.usr = usr
         self.__acct_sid = os.environ["TWILIO_ACCOUNT_SID"]
         self.__auto_token = os.environ["TWILIO_AUTH_TOKEN"]
         self.__from_no = os.environ["TWILIO_WHATSAPP_NO"]
         self.__to_no = os.environ["MY_NUMBER"]
-        self.schedule = Create_Schedule()
-        self.data = self.schedule.View("daily")
+        self.schedule = Create_Schedule(self.usr)
+        self.data = self.schedule.View(self.usr, "daily")
         self.reminder = None
         self.message = None
     """   

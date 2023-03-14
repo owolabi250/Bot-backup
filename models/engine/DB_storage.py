@@ -10,7 +10,9 @@ from models.baseModel import User, Base, user_id
 class DBstorage:
     __engine = None
     __session = None
-
+    """
+        The __init__ method is used to create a connection to the database
+    """
     def __init__(self):
         Mysql_User = os.getenv('MYSQL_USR')
         Mysql_Host = os.getenv('MYSQL_HOST')
@@ -23,27 +25,48 @@ class DBstorage:
                                                         Mysql_Host,
                                                         port,
                                                         Mysql_Db))
+    """
+       The View method is used to get the user data from the database
+       it takes in the user_id as an argument and returns a dictionary
+       of all user items in the database
+    """
 
-    def view(self, arg=None):
-
-        if arg is None:
-            table = User
-        else:
-            table = user_id
-
+    def view(self, my_id):
+        table = user_id
         my_dict = {}
+        tasks = {}
         objs = self.__session.query(table).all()
+
         for task in objs:
             key = task.id
             my_dict[key] = task
-        return (my_dict)
 
+        data = my_dict.get(my_id)
+        file = data.schedules
+        for items in file:
+            tasks[items.id] = {
+                    "Date" : items.Days,
+                    "Course" : items.Course,
+                    "Topic" : items.Topic,
+                    "Reminder" : items.Reminder,
+                    "Target" : items.Target,
+                    "Average" : items.Average,
+                    "Created_at" : items.Created_at,
+                    "Updated_at" : items.Updated_at
+                }
+        return my_dict, tasks
+
+    """
+        access method gets the users identity saved in the database
+        it takes in the user_id in the obj var, the key to specify an info and
+        the user_id class as an argument and returns a dictionary of the user
+    """
     def access(self, obj, key, arg):
         index = {'Email': user_id.Email,
                  'Password' : user_id.Password,
                  'User_name' : user_id.User_name,
                  'id' : user_id.id
-                 }
+                }
         query = self.__session.query(arg)
         data = query.filter(index[key] == obj).first()
         return data
