@@ -14,17 +14,28 @@
 
 }
 
-#log-form {
-  width: 350px;
+#form-card {
+    height: 500px;
+    max-width: 500px;
+    border-radius: 27px;
+    background: #f2f2f2;
+    box-shadow:  23px 23px 22px #a4a4a4,
+             -23px -23px 22px #ffffff;
+    
+ }
+/* .reg-frm{
+  width: 400px;
   height: 400px;
   border: none;
-}
-.form-control {
-    width: 350px;
-    height: 30px;
-    }
+  } */
+ #frm-btn {
+     position: absolute;
+     right: 49%;
+     align-items: center;
   
+} 
 
+  
 .forget{
   width: 350px;
   height: 250px;
@@ -44,15 +55,13 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-top: 0;
 }
 
 .form {
   text-align: center;
 }
 
-.align-center {
-  margin-top: 0;
-}
 .signup {
   color: rgb(77, 75, 75);
   text-transform: uppercase;
@@ -61,17 +70,11 @@
   font-weight: bold;
   font-size: x-large;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
-.form--input {
-  width: 100%;
-  margin-bottom: 1.25em;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid gray;
-  padding: 0.8em;
-  font-family: 'Inter', sans-serif;
-  outline: none;
+.form-control-label {
+  width: 20%;
 }
 
 .form--input:focus {

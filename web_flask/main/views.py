@@ -23,11 +23,6 @@ def front_page():
     return render_template('landing_page.html')
 
 
-@Main.route('/reset')
-def reset():
-    return render_template('forget.html')
-
-
 @Main.route('/about')
 def about():
     return render_template('about.html')

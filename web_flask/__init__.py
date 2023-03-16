@@ -26,5 +26,6 @@ def create_app(config_name):
     login_manager.login_view = 'Main.login'
     login_manager.login_message_category = 'info'
     moment.init_app(app)
+    mail.init_app(app)
     # attach routes and custom error pages here
     return app

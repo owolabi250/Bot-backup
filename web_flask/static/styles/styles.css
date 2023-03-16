@@ -98,15 +98,16 @@
   width: 100%;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  background-color: #f2f2f2;
+  background-color: #e8e8e8;
 }
 .chat-conversation {
   display: flex;
+  background-color: #e8e8e8;
   flex-direction: column;
 
 }
 .sent-message {
-  background-color: #f1f0f0;
+  background-color: transparent;
   border-radius: 30px;
   padding: 10px 15px;
   margin: 10px 0;
@@ -114,16 +115,17 @@
   justify-content: flex-end;
 }
 .sent-message p {
-  background-color: #d3e0dc;
+  background-color: #4eb00c;
   padding: 10px;
   border-radius: 20px 20px 0 20px;
   margin: 0;
+  color: #ffffff;
   max-width: 70%;
   word-wrap: break-word;
 }
 
 .replied-message {
-  background-color: #e9ecef;
+  background-color: transparent;
   border-radius: 30px;
   padding: 10px 15px;
   margin: 10px 0;
@@ -133,10 +135,11 @@
 }
 
 .replied-message p {
-  background-color: #eee;
+  background-color: #071c83;
   padding: 10px;
   border-radius: 20px 20px 20px 0;
   margin: 0;
+  color: #ffffff;
   max-width: 70%;
   word-wrap: break-word;
 }
