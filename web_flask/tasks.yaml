@@ -840,3 +840,53 @@
 8: 9. What is the difference between a personalized and a non-personalized recommendation
   system?
 9: 10. What is an item-item collaborative filtering algorithm?
+0: 1. What is web scraping?
+1: 2. What are the benefits of web scraping?
+2: 3. What are the challenges associated with web scraping?
+3: 4. What types of data can be extracted using web scraping?
+4: 5. What tools are commonly used for web scraping?
+5: 6. What techniques are used to avoid detection while web scraping?
+6: 7. What is the difference between web scraping and web crawling?
+7: 8. What is the difference between web scraping and data mining?
+8: 9. What is the difference between web scraping and web indexing?
+9: 10. How can web scraping be used to generate recommendations?
+0: 1. What is a recommendation system?
+1: 2. What are the different types of recommendation systems?
+2: 3. What are the benefits of using a recommendation system?
+3: 4. What type of data is used in a recommendation system?
+4: 5. What is collaborative filtering?
+5: 6. What is content-based filtering?
+6: 7. What is a hybrid recommendation system?
+7: 8. What are the challenges of implementing a recommendation system?
+8: 9. What are the different approaches to building a recommendation system?
+9: 10. What is the difference between a recommendation system and a search engine?
+0: 1. What is the purpose of a recommendation system?
+1: 2. What are the different types of recommendation systems?
+2: 3. What are the key components of a recommendation system?
+3: 4. What is collaborative filtering?
+4: 5. What is content-based filtering?
+5: 6. What is the difference between user-based and item-based collaborative filtering?
+6: 7. What is the cold start problem?
+7: 8. What is matrix factorization?
+8: 9. What is a hybrid recommendation system?
+9: 10. What are the challenges of recommendation systems?
+0: 1. What is the syntax of an arrow function?
+1: 2. What is the purpose of arrow functions?
+2: 3. What is the difference between a regular function and an arrow function?
+3: 4. How do arrow functions handle the this keyword?
+4: 5. What is the scope of an arrow function?
+5: 6. How do arrow functions handle arguments?
+6: 7. What is the difference between a function expression and a function declaration?
+7: 8. What is the syntax for an arrow function with no parameters?
+8: 9. What is the syntax for an arrow function with multiple parameters?
+9: 10. What is the syntax for an arrow function with a single expression?
+0: 1. What is the purpose of Pascal's Triangle?
+1: 2. What is the mathematical formula for calculating the nth row of Pascal's Triangle?
+2: 3. How many rows does Pascal's Triangle have?
+3: 4. What is the sum of the numbers in each row of Pascal's Triangle?
+4: 5. What is the relationship between the numbers in adjacent rows of Pascal's Triangle?
+5: 6. What is the sum of the numbers in the nth row of Pascal's Triangle?
+6: 7. How can Pascal's Triangle be used to calculate binomial coefficients?
+7: 8. What is the pattern of the numbers in Pascal's Triangle?
+8: 9. What is the significance of the numbers in Pascal's Triangle?
+9: 10. What

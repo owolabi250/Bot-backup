@@ -14,7 +14,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://code.iconify.design/iconify-icon/1.0.4/iconify-icon.min.js"></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed" id="status" data-my-var="{{ status }}">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
              
             <!-- Navbar Brand-->
@@ -30,6 +30,10 @@
                                 {% endfor %}
                          {% endif %}
                  {% endwith %}
+<!--            <div class="form-check form-switch" style="position: absolute; right: 25%;">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" style="width: 30px; height: 20px;" checked disabled>
+                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled" style="color: #fff;">Mode Auto</label>
+</div> -->
 		 <!-- Navbar Search-->
           	  <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -58,12 +62,12 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{ url_for('Main.view') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><iconify-icon icon="fluent-mdl2:b-i-dashboard" height="30" width="30" style="color: #fff;"></iconify-icon></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Show</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><iconify-icon  icon="fluent:tasks-app-28-filled"  height="30" width="30" style="color: #fff"></iconify-icon></div>
                                 View Task
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -76,7 +80,7 @@
                                 </nav>
                             </div>
                                  <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                    <div class="sb-nav-link-icon"><iconify-icon icon="fluent:quiz-new-28-regular" height="30" width="30" style="color: #fff"></iconify-icon></div>
                                     Quiz
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
@@ -90,26 +94,60 @@
                                         </a>
                                     </nav>
                                 </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                    <div class="sb-nav-link-icon"><iconify-icon icon="mdi:bookshelf" height="30" width="30" style="color: #fff"></iconify-icon></div>
+                                    Courses
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{{ url_for('Main.dashboard') }}">
+                                        Python
+                                        </a>
+                                        <a class="nav-link" href="{{ url_for('Main.quiz') }}">
+                                        Javascript
+                                        </a>
+                                        <a class="nav-link" href="{{ url_for('Main.quiz') }}">
+                                        React
+                                        </a>
+                                        <a class="nav-link" href="{{ url_for('Main.quiz') }}">
+                                        C
+                                        </a>
+                                    </nav>
+                                </div>
+
                             <div class="sb-sidenav-menu-heading">Features</div>
                             <a class="nav-link" href="{{ url_for('Main.help') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area" onclick="ShowBox();"></i></div>
+                                <div class="sb-nav-link-icon"><iconify-icon icon="fluent-mdl2:chat-bot" height="30" width="30" style="color: #fff;" onclick="ShowBox();"></iconify-icon></div>
                                 Chat Bot
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Get Resources
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                <div class="sb-nav-link-icon"><iconify-icon icon="ion:library" height="30" width="30" style="color: #fff"></iconify-icon></div>
+                                Library
+				                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                        </div>
+				            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                		        <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" id="article-link" href="{{ url_for('Main.articles') }}">
+                                         Daily Resources
+                                    </a>
+                                    <a class="nav-link" id="article-link" href="{{ url_for('Main.quiz') }}">
+                                         All Resources
+                                    </a>
+                                </nav>
+                            </div>
+		                </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as: </div>
-                        {{ current_user.username }}
+                        {{ user }}
                     </div>
                 </nav>
             </div>
+            {% block content %}
             <div id="layoutSidenav_content">
                 <main>
-                    {% block content %}
+
                     <div class="container">
                             {% block page_content %}
                             {% endblock %}
@@ -209,6 +247,7 @@
                                 <i class="fas fa-table me-1" id="tab"></i>
                                 Monthly Schedules
                                 <!--  <button id="add-row" href="{{ url_for('Main.new') }}">New</button>  -->
+                                {% block btn %}
                                 <div class='table-btns' style='overflow-x: auto;'> 
                                     <button type="button" title="Delete Task" class="remove-bin" id="my-btn"><iconify-icon icon="fluent:delete-32-filled" height="27" width="35"></iconify-icon></button>
                                     <button type="button" title="set alarm" class="set-alarm" id="my-alarm"><iconify-icon icon="material-symbols:alarm-outline" height="27" width="35"></iconify-icon></button>
@@ -218,7 +257,7 @@
 					                    <a class="small text-white stretched-link" id="add-new" href="{{ url_for('Main.new') }}"></a>
                                     </button>
                                 </div>
-
+                            {% endblock %}
 			                </div>
                             <div class="card-body mb-4" id="table-back">
                                 <table class="table table-hover" id="datatablesSimple">
@@ -270,9 +309,9 @@
                             </div>
                         </div>
                     </div>
-                    {% endblock %}
                 </main>
                 <footer class="py-4 bg-dark mt-auto">
+		{% endblock %}
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-white bg-dark">Copyright &copy; Nomynameisjamees 2023</div>
@@ -283,6 +322,7 @@
                             </div>
                         </div>
                     </div>
+  
                 </footer>
             </div>
         </div>

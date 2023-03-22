@@ -125,3 +125,29 @@ $(document).ready(function() {
 				});
         };
 	});
+
+$(document).ready(function() {
+    $("#auto-btn").click(function() {
+    var day = $("#auto-input").val();
+        console.log(day);
+ 
+     $.ajax({
+         type: "POST",
+       url: "http://127.0.0.1:5001/api/v1/auto-dash",
+       headers: {
+           "Content-Type" : "application/json",
+                 },
+      beforeSend: function(xhr) {
+         xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+                         },
+       data: JSON.stringify({ "Day": day }),
+       dataType: "json",
+       success: function(data) {
+           console.log("Auto dash set successfully!");
+       },
+       error: function(xhr, status, error) {
+           console.error(error);
+       }
+     });
+   });
+});

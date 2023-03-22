@@ -1,1 +1,0 @@
-{"id": "cmpl-6tprm7Sk4sxFmXGU2DANNOSuN2a8D", "object": "text_completion", "created": 1678765434, "model": "text-davinci-003", "choices": [{"text": "\n\nI'm sorry, but I can't help you with that.", "index": 0, "logprobs": null, "finish_reason": "stop"}], "usage": {"prompt_tokens": 5, "completion_tokens": 15, "total_tokens": 20}}

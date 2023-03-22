@@ -6,9 +6,10 @@ from models.Reminder import Reminder
 from models import storage
 from datetime import datetime, timedelta
 from flask_login import current_user, login_required
-from models.baseModel import User, user_id
+from models.baseModel import User, user_id, AutoSchedule
 from functools import wraps
 import jwt
+import json
 
 #bot = cs()
 #data = bot.View()
@@ -112,4 +113,44 @@ def reminder(current_user):
         req_json = request.get_json()
         bot.Twilio(**req_json)
         return jsonify({"Success" : "Reminder sent"}), 200
+
+@main_app.route('/auto-dash', methods=['POST'])
+@token_required
+def auto_dash(current_user):
+    ID = current_user.id
+    data = storage.view(ID)[0].get(ID)
+    doc = data.auto_schedules
+    key = [i for i in doc if i.user_ID == ID]
+    req_json = request.get_json()
+    now = datetime.utcnow().date()
+
+    if request.method == 'POST':
+        day = req_json.get("Day")
+        day = datetime.strptime(day, "%Y-%m-%d").date()
+ 
+         # Check if the specified date is in the past
+        if day < now:
+            return jsonify({"message": "Date is in the past"}), 400
+ 
+ # Check if the user already has a task set for this day
+        if key:
+            return jsonify({"message": "User task already set"}), 400
+ 
+         # Create a new schedule for the user
+        with open('Python_Courses.json', 'r') as f:
+             courses = json.load(f)
+             file = [v for v in courses.values()]
+             for i, course in enumerate(file):
+                 date = day + timedelta(days=i)
+                 task = AutoSchedule(user_ID=ID,
+                                    Days=date,
+                                    Course=course["Course"],
+                                    Topic=course["Topic"],
+                                    Reminder=req_json.get("Reminder"),
+                                    Created_at=now)
+                 storage.new(task)
+        storage.save()
+        return jsonify({"Success": "Auto dash set"}), 200
+ 
+
 

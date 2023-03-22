@@ -24,3 +24,71 @@
     ' What should be done to ensure that all development tasks are properly integrated before wrapping up a development stage?8': testing
     ' What steps should be taken when wrapping up a development stage?3': ensure everything
       is in order by running series of test to assert all functionalities
+'5':
+  'False':
+    ' What are the disadvantages of using a recommendation system?7': it could have
+      a user focus on only the recommended area and not broadening up to other alternatives
+    ' What are the two main types of recommendation systems?3': Selective and constructive
+    ' What is a cold start problem?9': no idea
+    ' What is an item-item collaborative filtering algorithm?': no idea
+    ' What is collaborative filtering?4': this is the act of filtering out false alternative
+      not needed in a collaborative process
+    ' What is content-based filtering?5': this is rendering only a content specified
+      by the user
+    ' What is the difference between a personalized and a non-personalized recommendation system?10': personalized
+      recommendation involves a specific request a user proposes while non-personalised
+      could be a general recommendation based on the users interest
+  'True':
+    ' How do recommendation systems use user data?8': based on the choices a user
+      interacts with the most
+    ' What are the advantages of using a recommendation system?6': it helps presents
+      possible options and alternatives to a specific area
+    ' What is the purpose of a recommendation system?2': A recommendation system is
+      set in place to help a user interact with available options or sort after resources
+'5':
+  'False':
+    ' What is the difference between web scraping and data mining?9': no idea
+    ' What is the difference between web scraping and web crawling?8': no idea
+    ' What is the difference between web scraping and web indexing?10': no idea
+    ' What techniques are used to avoid detection while web scraping?7': no idea
+    ' What types of data can be extracted using web scraping?5': virtually all types
+      of data can be scrapped from a web page, in exception of encrypted data or private
+      info
+  'True':
+    ' How can web scraping be used to generate recommendations?': data gotten from
+      the scrapped sites can be used on personal web pages and serve users recommendations
+      based on their preferences
+    ' What are the benefits of web scraping?3': gain access to information and time
+      effectiveness
+    ' What are the challenges associated with web scraping?4': time spent parsing
+      and cleaning up large chunks of scrapped data
+    ' What is web scraping?2': web scrapping can be defined as the extraction of certain
+      Information from a webpage
+    ' What tools are commonly used for web scraping?6': the Requests as well as the
+      bs4 module in python
+'10':
+  'False':
+    ' How do arrow functions handle the this keyword?5': it handles it by setting
+      the varible name as the function syntax
+    ' What is the scope of an arrow function?6': the scope is within the variable
+      declaration
+    ' What is the syntax for an arrow function with a single expression?': const myFunc
+      = (arg) => { return arg; }
+  'True':
+    ' How do arrow functions handle arguments?7': you can pass arguments into the
+      parenthesis during declaration  eg const myFunc = (arg1, arg2) => { }
+    ' What is the difference between a function expression and a function declaration?8': function
+      declaration involves stating parameters involved with the function while expression
+      has to do with the initialization
+    ' What is the difference between a regular function and an arrow function?4': the
+      key difference is with the declaration, where the arrow function has a much
+      simplified syntax and doesn't need to be declared using the function keyword
+    ' What is the purpose of arrow functions?3': an arrow functions is used to declare
+      an anonymous function, where a function declaration is needed in a script to
+      perform a quick specific task
+    ' What is the syntax for an arrow function with multiple parameters?10': const
+      Myfunc = (...args) => { }
+    ' What is the syntax for an arrow function with no parameters?9': const myFunc
+      = () => { }
+    ' What is the syntax of an arrow function?2': syntax is const myFunc = () => {
+      ... }

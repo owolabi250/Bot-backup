@@ -144,3 +144,47 @@ $(Document).ready(function() {
     });
 });
 */
+
+$(document).ready(function() {
+    var auto = $('#status').data('my-var');
+    if (auto === 'True') {
+        $("#datatablesSimple tbody tr").each(function() {
+      // Check if date matches current date
+            var currentDate = new Date().toISOString().slice(0,10);
+
+            var dateValue = $(this).closest("tr").find("td:nth-child(3)").text();
+        if (dateValue === currentDate) {
+        // Get topic from table row
+             var topicValue = $(this).closest("tr").find("td:nth-child(5)").text();
+            console.log(topicValue)
+        }
+        });
+        
+    }
+     $('#article-link').click(function(event) {
+         $.ajax({
+          url: 'http://127.0.0.1:5001/api/v1/articles',
+          type: 'POST',
+          data: { topic: topic },
+          headers: {
+              "Content-Type" : "application/json",
+          },
+             beforeSend: function(xhr) {
+                 xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+             },
+            success: function(response) {
+                console.log(response)
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log('Error:', errorThrown);
+            }
+            });
+     });
+});
+
+$(document).ready(function() {
+			$('#book-btn').on('click', function() {
+				$(this).siblings('iframe').toggle();
+			});
+		});
+

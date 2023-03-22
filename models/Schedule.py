@@ -69,13 +69,17 @@ class Create_Schedule(User):
             models.storage.close()
 
 
-    def View(self, my_id, choice=None):
+    def View(self, my_id, choice=None, table=None):
         """
             class method queries the database and returns a dictionary value
             based on the specified query method
         """
-        new = models.storage.access(my_id, 'id', user_id)
-        tasks = new.schedules.all()
+        if table is None:
+            new = models.storage.access(my_id, 'id', user_id)
+            tasks = new.schedules.all()
+        else:
+            new = models.storage.access(my_id, 'id', user_id)
+            tasks = new.auto_schedules.all()
         new_dict = {}
         new_dict_2 = {}
         short_date = self.now.strftime("%Y-%m-%d")

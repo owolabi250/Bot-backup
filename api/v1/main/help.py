@@ -5,6 +5,7 @@ from models.Schedule import Create_Schedule as cs
 from models import storage
 from models.checker import Checker
 from .tasks import token_required
+from .res import get_recommendations, get_resource
 import json
 import yaml
 
@@ -68,3 +69,25 @@ def quiz(current_user):
             abort(404, 'invalid request')
         else:
             return jsonify(file), 200
+
+@main_app.route('/articles', methods=['GET', 'POST'])
+@token_required
+def articles(current_user):
+    ID = current_user.id
+    if request.method == 'POST':
+        task = request.json.get('task')
+        if task is None:
+            abort(404, 'invalid request')
+        else:
+            file = {}
+            data = get_recommendations(task)
+            if data is None:
+                abort(404, 'invalid request')
+            else:
+                source = get_resource(data)
+                file[task] = source
+                with open('Python_resources.json', 'w') as f:
+                    json.dump(file, f)
+                filtered_list = list(filter(lambda x: x.strip(), source))
+                return jsonify(filtered_list), 200
+

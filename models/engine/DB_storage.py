@@ -24,7 +24,7 @@ class DBstorage:
                                                         Mysql_Pass,
                                                         Mysql_Host,
                                                         port,
-                                                        Mysql_Db))
+                                                        Mysql_Db), pool_recycle=3600)
     """
        The View method is used to get the user data from the database
        it takes in the user_id as an argument and returns a dictionary

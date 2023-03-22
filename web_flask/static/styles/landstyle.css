@@ -64,6 +64,40 @@
   --bs-body-bg: #fff;
 }
 
+
+#auto-card {
+    width: 40%;
+    position: relative;
+    max-height: 100%;
+    right: 25%;
+    /*align-items: center;
+    justify-content: center; */
+    overflow: hidden;
+    margin: 0 auto;
+    background: rgba( 255, 255, 255, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border-radius: 5px;
+    border: 0.5px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.auto-card-title {
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(to right, #f12711, #f5af19); 
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-shadow: 0 0 120px rgba(255, 255, 255, 0.2);
+}
+.auto-card-text {
+    word-wrap: break-word;
+    width: 60%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #fff;
+}
 *,
 *::before,
 *::after {
@@ -73,12 +107,81 @@
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
+    background-color: #171717;
   }
 }
 
 .bd-color{
-  background-color: #162D16;
+  background-color: #171717;/*#162D16; */
 }
+
+.auto-container {
+  position: relative; /* add position relative */
+  z-index: 1; 
+  height: 50%;
+  width: 50%;
+  left: calc(60% - 300px);
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.my-auto-card {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 400px;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+/*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 5px;
+}
+.my-auto-card-title {
+position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-top: 0;
+  background: linear-gradient(to right, #f12711, #f5af19);
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-shadow: 0 0 120px rgba(255, 255, 255, 0.2);
+}
+.course-title {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(to right, #f12711, #f5af19);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-shadow: 0 0 120px rgba(255, 255, 255, 0.2);
+}
+.my-auto-card:not(:first-child) {
+    margin-left: -50px;
+}
+
+.my-auto-card:hover {
+ /* transform: translateY(-20px); */
+  transform: translateX(-50px);
+  transition: 0.4s ease-out;
+}
+.descrip {
+    color: #fff;
+    font-size: 15px;
+    word-wrap: break-word;
+    width: 95%;
+}
+.my-auto-card:hover ~ .card {
+  position: relative;
+  left: 90px;
+  transition: 0.4s ease-out;
+}
+
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -87,7 +190,7 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background-color: #171717; /*var(--bs-body-bg); */
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -1152,7 +1255,7 @@ progress {
     flex: 0 0 auto;
     width: auto;
   }
-
+/* section in use */
   .col-md-1 {
     flex: 0 0 auto;
     width: 8.33333333%;
@@ -1534,6 +1637,7 @@ progress {
     --bs-gutter-y: 3rem;
   }
 }
+/* end section in use for column sizing */
 @media (min-width: 1200px) {
   .col-xl {
     flex: 1 0 0%;

@@ -10,14 +10,18 @@ import urllib3
 
 class Checker:
     task_ID = None
-    def __init__(self, my_id):
+    def __init__(self, my_id, table=None):
         self.my_id = my_id
+        self.table = table
         """
             class modifies the Average and Target column of the User
             database
         """
         self.schedule = Create_Schedule(self.my_id)
-        self.task = self.schedule.View(self.my_id, "daily")
+        if self.table:
+            self.task = self.schedule.View(self.my_id, "daily", self.table)
+        else:
+            self.task = self.schedule.View(self.my_id, "daily")
         for key, value in self.task.items():
             self.task_ID = key
             text = self.task[key]['Topic']

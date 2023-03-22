@@ -8,7 +8,8 @@ from flask_mail import Mail
 from flask_login import login_required, current_user
 from . import Main
 import os
-
+import models
+import json
 
 
 """
@@ -17,6 +18,7 @@ import os
     based on the status of the task
 """
 quiz_data = {}
+auto = False
 
 @Main.route('/')
 def front_page():
@@ -32,45 +34,63 @@ def about():
 @login_required
 def missed():
     my_id = current_user.id
+    user = current_user.User_name
     if not my_id:
         flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
-    dic = bot.View(my_id, 'missed')
-    return render_template('task_status.html', data=dic)
+    if auto:
+        dic = bot.View(my_id, 'missed', 'auto')
+        return render_template('task_status.html', data=dic, state=auto, user=user)
+    else:
+        dic = bot.View(my_id, 'missed')
+        return render_template('task_status.html', data=dic, user=user)
 
 @Main.route('/daily', methods=['GET'])
 @login_required
 def daily():
     my_id = current_user.id
+    user = current_user.User_name
     if not my_id:
         flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
-    dic = bot.View(my_id, 'daily')
-    return render_template('task_status.html', data=dic)
+    if auto:
+        dic = bot.View(my_id, 'daily', 'auto')
+        return render_template('task_status.html', data=dic, state=auto, user=user)
+    else:
+        dic = bot.View(my_id, 'daily')
+        return render_template('task_status.html', data=dic, user=user)
 
 @Main.route('/View', methods=['GET'])
 @login_required
 def view():
+    global auto
     my_id = current_user.id
+    user = current_user.User_name
     if not my_id:
         flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
     dic = bot.View(my_id)
-    return render_template('index.html', data=dic)
+    auto = False
+    return render_template('index.html', data=dic, status=auto, user=user)
 
 @Main.route('/upcoming')
 @login_required
 def upcoming():
     my_id = current_user.id
+    user = current_user.User_name
     if not my_id:
         flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
-    dic = bot.View(my_id, 'upcoming')
-    return render_template('task_status.html', data=dic)
+    if auto:
+        dic = bot.View(my_id, 'upcoming', 'auto')
+        return render_template('task_status.html', data=dic, state=auto, user=user)
+    else:
+        dic = bot.View(my_id, 'upcoming')
+        return render_template('task_status.html', data=dic, user=user)
 
 @Main.route('/new')
 @login_required
@@ -81,16 +101,45 @@ def new():
 @login_required
 def quiz():
     global quiz_data # declare global variable
-    
     ID = current_user.id
-    bot = Checker(ID)
-    data_id = bot.task_ID
+    user = current_user.User_name
+    if auto:
+        bot = Checker(ID, 'auto')
+        data_id = bot.task_ID
+    else:
+        bot = Checker(ID)
+        data_id = bot.task_ID
     if not bot.task or not data_id:
         return f"Sorry, there are no tasks available at the moment."
     if not quiz_data: # check if global variable is not empty
         dic = bot.Question()
         quiz_data = dic # store results in global variable
-        return render_template('quiz.html', data=dic, data_ID=data_id)
+        return render_template('quiz.html', data=dic, data_ID=data_id, user=user)
     else:
-        return render_template('quiz.html', data=quiz_data, data_ID=data_id)
+        return render_template('quiz.html', data=quiz_data, data_ID=data_id, user=user)
 
+@Main.route('/auto_dash', methods=['GET'])
+@login_required
+def dashboard():
+    global auto
+    ID = current_user.id
+    user = current_user.User_name
+    if not ID:
+        return redirect(url_for('Main.login'))
+    data = models.storage.view(ID)[0].get(ID)
+    obj = data.auto_schedules
+    key = [i for i in obj if i.user_ID == ID]
+    if key:
+        auto = True
+        return render_template('auto_dash.html', data=obj, status=auto, user=user)
+    else:
+        return render_template('auto_reg.html')
+
+
+@Main.route('/articles', methods=['GET', 'POST'])
+@login_required
+def articles():
+    if auto:
+        return render_template('articles.html', status=auto)
+    else:
+        return render_template('auto_reg.html')
