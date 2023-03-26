@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
+<div id="layoutSidenav_content">
+    <main>
     <div class="card" style="width: 18rem; left: 40%; bottom: -50%" id="about-body">
         <div class="card-body">
             <div class="card-title" style="text-align:center;">
@@ -10,9 +12,12 @@
             <p class="text-center font-monospace">Get Started</p>
         <div class="mb-3">
             <label for="font-monospace" class="form-label">Date</label>
-            <input class="form-control" type="text" placeholder="y-m-d" aria-label="default input example" id="auto-input">
+            <input class="form-control" type="date"  id="auto-input"></input>
         </div>
             <button type="button" class="btn btn-success" id="auto-btn">submit</button>
         </div>
     </div>
+</main>
+<footer class="py-4 bg-dark mt-auto">
+
 {% endblock %}

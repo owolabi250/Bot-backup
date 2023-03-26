@@ -7,6 +7,10 @@ from flask_login import current_user
 """
 @Main.route('/help')
 def help():
+    ID = current_user.id
     user = current_user.User_name
+    if not ID:
+        flash('Please login to access this page', 'danger')
+        return redirect(url_for('Main.login'))
     return render_template('help.html', user=user) 
 

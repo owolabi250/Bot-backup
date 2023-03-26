@@ -157,6 +157,7 @@ $(document).ready(function() {
         // Get topic from table row
              var topicValue = $(this).closest("tr").find("td:nth-child(5)").text();
             console.log(topicValue)
+
         }
         });
         
@@ -187,4 +188,5 @@ $(document).ready(function() {
 				$(this).siblings('iframe').toggle();
 			});
 		});
+
 

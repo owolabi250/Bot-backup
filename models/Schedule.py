@@ -78,8 +78,15 @@ class Create_Schedule(User):
             new = models.storage.access(my_id, 'id', user_id)
             tasks = new.schedules.all()
         else:
+            tasks = None
             new = models.storage.access(my_id, 'id', user_id)
-            tasks = new.auto_schedules.all()
+            file = {
+                    "Python" : new.auto_schedules.all(),
+                    "Javascript" : new.JScourse.all()
+                }
+            if table in file:
+                tasks = file.get(table)
+
         new_dict = {}
         new_dict_2 = {}
         short_date = self.now.strftime("%Y-%m-%d")

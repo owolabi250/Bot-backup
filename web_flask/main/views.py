@@ -19,6 +19,7 @@ import json
 """
 quiz_data = {}
 auto = False
+course = None
 
 @Main.route('/')
 def front_page():
@@ -40,7 +41,7 @@ def missed():
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
     if auto:
-        dic = bot.View(my_id, 'missed', 'auto')
+        dic = bot.View(my_id, 'missed', course)
         return render_template('task_status.html', data=dic, state=auto, user=user)
     else:
         dic = bot.View(my_id, 'missed')
@@ -56,7 +57,7 @@ def daily():
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
     if auto:
-        dic = bot.View(my_id, 'daily', 'auto')
+        dic = bot.View(my_id, 'daily', course)
         return render_template('task_status.html', data=dic, state=auto, user=user)
     else:
         dic = bot.View(my_id, 'daily')
@@ -86,7 +87,7 @@ def upcoming():
         return redirect(url_for('Main.login'))
     bot = Create_Schedule(my_id)
     if auto:
-        dic = bot.View(my_id, 'upcoming', 'auto')
+        dic = bot.View(my_id, 'upcoming', course)
         return render_template('task_status.html', data=dic, state=auto, user=user)
     else:
         dic = bot.View(my_id, 'upcoming')
@@ -103,6 +104,9 @@ def quiz():
     global quiz_data # declare global variable
     ID = current_user.id
     user = current_user.User_name
+    if not ID:
+        flash('You need to be logged in to view this page', 'danger')
+        return redirect(url_for('Main.login'))
     if auto:
         bot = Checker(ID, 'auto')
         data_id = bot.task_ID
@@ -121,17 +125,27 @@ def quiz():
 @Main.route('/auto_dash', methods=['GET'])
 @login_required
 def dashboard():
-    global auto
+    global auto, course
     ID = current_user.id
     user = current_user.User_name
     if not ID:
+        flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     data = models.storage.view(ID)[0].get(ID)
-    obj = data.auto_schedules
-    key = [i for i in obj if i.user_ID == ID]
+    files = {
+            "Python" : data.auto_schedules,
+            "Javascript" : data.JScourse
+        }
+    course = request.args.get('myID')
+    doc = None
+    key = None
+    if course in files:
+        doc = files.get(course)
+    if doc:
+        key = [i for i in doc if i.user_ID == ID]
     if key:
         auto = True
-        return render_template('auto_dash.html', data=obj, status=auto, user=user)
+        return render_template('auto_dash.html', data=doc, status=auto, user=user)
     else:
         return render_template('auto_reg.html')
 
@@ -139,7 +153,13 @@ def dashboard():
 @Main.route('/articles', methods=['GET', 'POST'])
 @login_required
 def articles():
-    if auto:
+    ID = current_user.id
+    if not ID:
+        flash('You need to be logged in to view this page', 'danger')
+        return redirect(url_for('Main.login'))
+    if auto and course == 'Python':
         return render_template('articles.html', status=auto)
+    elif auto and course == 'Javascript':
+        return render_template('JSarticles.html', status=auto)
     else:
         return render_template('auto_reg.html')

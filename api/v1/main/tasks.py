@@ -6,7 +6,7 @@ from models.Reminder import Reminder
 from models import storage
 from datetime import datetime, timedelta
 from flask_login import current_user, login_required
-from models.baseModel import User, user_id, AutoSchedule
+from models.baseModel import User, user_id, AutoSchedule, JSCourse
 from functools import wraps
 import jwt
 import json
@@ -119,9 +119,18 @@ def reminder(current_user):
 def auto_dash(current_user):
     ID = current_user.id
     data = storage.view(ID)[0].get(ID)
-    doc = data.auto_schedules
-    key = [i for i in doc if i.user_ID == ID]
+    files = {
+            "Python" : [AutoSchedule, data.auto_schedules, 'Python_Courses.json'],
+            "Javascript" : [JSCourse, data.JScourse, 'JSCourse.json']
+            }
     req_json = request.get_json()
+    course = req_json.get('Course')
+    doc = None
+    key = None
+    if course in files:
+        doc = files.get(course)
+    if doc:
+        key = [i for i in doc[1] if i.user_ID == ID]
     now = datetime.utcnow().date()
 
     if request.method == 'POST':
@@ -137,20 +146,23 @@ def auto_dash(current_user):
             return jsonify({"message": "User task already set"}), 400
  
          # Create a new schedule for the user
-        with open('Python_Courses.json', 'r') as f:
-             courses = json.load(f)
-             file = [v for v in courses.values()]
-             for i, course in enumerate(file):
-                 date = day + timedelta(days=i)
-                 task = AutoSchedule(user_ID=ID,
+        if doc: 
+            with open(doc[2], 'r') as f:
+                courses = json.load(f)
+                file = [v for v in courses.values()]
+                for i, topic in enumerate(file):
+                    date = day + timedelta(days=i)
+                    task = doc[0](user_ID=ID,
                                     Days=date,
-                                    Course=course["Course"],
-                                    Topic=course["Topic"],
+                                    Course=topic["Course"],
+                                    Topic=topic["Topic"],
                                     Reminder=req_json.get("Reminder"),
                                     Created_at=now)
-                 storage.new(task)
-        storage.save()
-        return jsonify({"Success": "Auto dash set"}), 200
+                    storage.new(task)
+            storage.save()
+            return jsonify({"Success": "Auto dash set"}), 200
+        else:
+            return jsonify({"message": "Course not found"}), 400
  
 
 

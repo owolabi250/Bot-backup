@@ -92,3 +92,32 @@
       = () => { }
     ' What is the syntax of an arrow function?2': syntax is const myFunc = () => {
       ... }
+'11':
+  'False':
+    ' How many rows are in Pascal''s Triangle?5': '6'
+    ' What is Pascal''s Triangle?2': a pascal triangle is a series of algromatic sequence
+      aimed at achieving a task
+    ' What is the formula for generating the next row of Pascal''s Triangle?4': n
+      + 1
+    ' What is the sum of the numbers in each row of Pascal''s Triangle?6': n = n+1
+  'True':
+    ' Who discovered Pascal''s Triangle?3': blase Pascal
+'14':
+  'False':
+    ' How do you define a static method in a class?6': by using the static keyword
+      followed by the name of the variable
+  'True':
+    ' Can you use the "extends" keyword to inherit from multiple classes in ES6?4': yes
+      you can use the extends word to inherit from a parent class
+    ' Can you use the "new" keyword to create an instance of a': yes you can use the
+      new keyword to create a new instance of a class
+    ' Can you use the "super" keyword to call a method from a parent class in ES6?7': 'yes'
+    ' How do you define a getter and setter method in a class?9': by declaring them
+      within the scope of the class
+    ' What is the difference between "private" and "public" class fields in ES6?8': private
+      class fields are not accessible outside the scope of the class
+    ' What is the difference between a class and an object in JavaScript?3': a class
+      has a property and a method defined within its scope
+    ' What is the purpose of the "constructor" method in a class?5': constructors
+      are used to initialise a class object when creating an instance of that class
+    ' What is the syntax for creating a class in ES6?2': class Myclass {...}

@@ -28,7 +28,7 @@ class Checker:
             self.message = f"where can i best learn the following topic {text}\
                             recommend alongsides resources"
             self.question = f"test my knowledge on the following topic {text}\
-                            by asking exactly 10 objective questions"
+                            by asking exactly 10 none objective questions"
 
 
     """
@@ -69,24 +69,27 @@ class Checker:
             Value = v
 
         for question, answer in Value.items():
-            prompt = f"Based on this Question: {question} determine if this statement is true or false? {answer}"
-            response = openai.Completion.create(
-                    model="text-davinci-003",
-                    prompt= prompt,
+            prompt = [
+                        {"role": "system", "content":
+                         f"Based on this Question: {question} determine if this statement is true or false? {answer}"}
+                    ]
+            response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages= prompt,
                     temperature=0.3,
                     max_tokens=150,
                     top_p=1.0,
                     frequency_penalty=0.0,
                     presence_penalty=0.0
                     )
-            summary = response.choices[0].text.strip()
+            summary = response['choices'][0]['message']['content'].strip()
 # Quary API response to get questions that have a true  or false value key
             if "True" in summary:
                 response_dict["True"][question] = answer
 
             elif "False" in summary:
                 response_dict["False"][question] = answer
-        with open('checked_answer.json', 'w') as file:
+        with open('checked_answer.json', 'a') as file:
             json.dump(response_dict, file)
         return response_dict
 
@@ -101,10 +104,13 @@ class Checker:
                 opt = self.message
             else:
                 opt = message
+            messages = [
+  {"role": "system", "content": f"{opt}"}
+  ]
             openai.api_key = os.environ['OPENAI_API_KEY']
-            response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt= opt,
+            response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages= messages,
                         temperature=0.3,
                         max_tokens=150,
                         top_p=1.0,
@@ -114,9 +120,9 @@ class Checker:
             """
                 returns a JSON value of the API response
             """
-            with open('response.json', 'w') as file:
+            with open('response.json', 'a') as file:
                 json.dump(response, file)
-            answer = response.choices[0].text
+            answer = response['choices'][0]['message']['content'].strip()
             return answer.strip()
         except urllib3.exceptions.NewConnectionError:
             return f"Connection Error, please check your internet connection"

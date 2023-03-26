@@ -53,7 +53,7 @@ GRANT SELECT ON performance_schema.* TO 'BotSchedule'@'localhost'; */
     FOREIGN KEY (`user_ID`) REFERENCES `user_info` (`id`)
   ); */
 
-DROP TABLE IF EXISTS `PythonDB`;
+/*DROP TABLE IF EXISTS `PythonDB`;
   
 CREATE TABLE `PythonDB` (
       `ID` INT NOT NULL AUTO_INCREMENT,
@@ -68,5 +68,24 @@ CREATE TABLE `PythonDB` (
       `updated_at` VARCHAR(50),
       PRIMARY KEY(`ID`),
       FOREIGN KEY (`user_ID`) REFERENCES `user_info` (`id`)
+    ); */
+
+DROP TABLE IF EXISTS `JavascriptDB`;
+ 
+
+CREATE TABLE `JavascriptDB` (
+      `ID` INT NOT NULL AUTO_INCREMENT,
+      `Days` VARCHAR(50),
+      `user_ID` VARCHAR(200) NOT NULL,
+      `Course` VARCHAR(50),
+      `Topic` VARCHAR(50),
+      `Reminder` VARCHAR(50),
+      `Target` INT,
+      `Average` INT,
+      `created_at` VARCHAR(50),
+      `updated_at` VARCHAR(50),
+      PRIMARY KEY(`ID`),
+      FOREIGN KEY (`user_ID`) REFERENCES `user_info` (`id`)
     );
+
 

@@ -890,3 +890,86 @@
 7: 8. What is the pattern of the numbers in Pascal's Triangle?
 8: 9. What is the significance of the numbers in Pascal's Triangle?
 9: 10. What
+0: 1. What is Pascal's Triangle?
+1: a) A mathematical formula for calculating the area of a triangle
+2: b) A sequence of numbers arranged in a triangle shape
+3: c) A method for solving quadratic equations
+5: 2. Who discovered Pascal's Triangle?
+6: a) Blaise Pascal
+7: b) Isaac Newton
+8: c) Euclid
+10: 3. What is the first row of Pascal's Triangle?
+11: a) 1
+12: b) 1, 1
+13: c) 1, 2, 1
+15: 4. What is the second row of Pascal's Triangle?
+16: a) 1
+17: b) 1, 1
+18: c) 1, 2, 1
+20: 5. What is the third row of Pascal's Triangle
+0: 1. What is Pascal's Triangle?
+1: 2. Who discovered Pascal's Triangle?
+2: 3. What is the formula for generating the next row of Pascal's Triangle?
+3: 4. How many rows are in Pascal's Triangle?
+4: 5. What is the sum of the numbers in each row of Pascal's Triangle?
+5: 6. What is the relationship between Pascal's Triangle and binomial coefficients?
+6: 7. How is Pascal's Triangle used in probability theory?
+7: 8. Can Pascal's Triangle be extended beyond the traditional triangle shape?
+8: 9. What is the significance of the diagonal elements in Pascal's Triangle?
+9: 10. How is Pascal's Triangle related to the Fibonacci sequence?
+0: 1. What is the purpose of the "if" statement in Python?
+1: 2. How does the "while" loop differ from the "for" loop?
+2: 3. Can you use "break" and "continue" statements in a "for" loop? If so, how?
+3: 4. What is the difference between "range" and "xrange" in Python?
+4: 5. How can you use "else" with a "for" loop in Python?
+5: 6. What is the purpose of the "pass" statement in Python?
+6: 7. Can you nest "if" statements inside "for" loops? If so, how?
+7: 8. What is the difference between "==" and "is" in Python?
+8: 9. How can you
+0: 1. What is a data structure?
+1: 2. What is the difference between an array and a linked list?
+2: 3. What is a stack and how is it implemented?
+3: 4. What is a queue and how is it implemented?
+4: 5. What is a binary search tree and how is it traversed?
+5: 6. What is a hash table and how does it work?
+6: 7. What is the time complexity of searching in a binary search tree?
+7: 8. What is the time complexity of inserting an element in a hash table?
+8: 9. What is the difference between a breadth-first search and a depth-first search?
+9: 10. What is dynamic programming and how is it related to data structures?
+0: 1. What is the syntax for creating a class in ES6?
+1: 2. What is the difference between a class and an object in JavaScript?
+2: 3. Can you use the "extends" keyword to inherit from multiple classes in ES6?
+3: 4. What is the purpose of the "constructor" method in a class?
+4: 5. How do you define a static method in a class?
+5: 6. Can you use the "super" keyword to call a method from a parent class in ES6?
+6: 7. What is the difference between "private" and "public" class fields in ES6?
+7: 8. How do you define a getter and setter method in a class?
+8: 9. Can you use the "new" keyword to create an instance of a
+0: 'Sorry, as an AI language model, I cannot test your knowledge through non-objective
+  questions. However, I can provide you with 5 practical questions related to ES6
+  Basics:'
+2: 1. How do you declare a constant variable in ES6?
+3: 2. What is the difference between let and var in ES6?
+4: 3. How do you declare a function using arrow notation in ES6?
+5: 4. What is the spread operator in ES6 and how is it used?
+6: 5. How do you import and export modules in ES6?
+0: 1. What is the difference between var, let, and const in ES6?
+1: 2. How do you declare a function using arrow notation in ES6?
+2: 3. What is the spread operator in ES6 and how is it used?
+3: 4. How do you declare a class in ES6?
+4: 5. What is the purpose of template literals in ES6?
+5: 6. How do you import and export modules in ES6?
+6: 7. What is the difference between a for loop and a for...of loop in ES6?
+7: 8. How do you declare a default parameter in a function in ES6?
+8: 9. What is the purpose of the Promise object in ES6?
+9: 10. How do you use destructuring assignment in ES6?
+0: 1. What is a module in programming?
+1: 2. What is the purpose of using modules in a program?
+2: 3. How do you import a module in Python?
+3: 4. Can you create your own module in Python?
+4: 5. What is the difference between a built-in module and a third-party module?
+5: 6. How do you access functions or variables from a module in Python?
+6: 7. Can you import only specific functions or variables from a module?
+7: 8. What is the "__init__.py" file in a module?
+8: 9. How do you install a third-party module in Python?
+9: 10. Can you use modules in other programming languages besides Python?

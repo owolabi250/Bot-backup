@@ -9,14 +9,7 @@ import jwt
 
 Base = declarative_base()
 
-class User(Base):
-    """
-        class maps out a table in the mysql database creating an object
-        representation
-    """
-    __tablename__='January'
-    id = Column(Integer, primary_key=True)
-    user_ID = Column(String(255), ForeignKey('user_info.id'))
+class Auto_courses:
     Days = Column(DateTime)
     Course = Column(String(50))
     Topic = Column(String(50))
@@ -34,30 +27,32 @@ class User(Base):
                 Average: {self.Average} Reminder: {self.Reminder}\
                 Created: {self.Created_at}"
 
-class AutoSchedule(Base):
+
+class User(Base, Auto_courses):
+    """
+        class maps out a table in the mysql database creating an object
+        representation
+    """
+    __tablename__='January'
+    id = Column(Integer, primary_key=True)
+    user_ID = Column(Integer, ForeignKey('user_info.id'))
+
+
+class AutoSchedule(Base, Auto_courses):
      """
          class maps out a table in the mysql database creating an object
          representation
      """
      __tablename__='PythonDB'
      id = Column(Integer, primary_key=True)
-     Days = Column(DateTime)
-     Course = Column(String(50))
      user_ID = Column(Integer, ForeignKey('user_info.id'))
-     Topic = Column(String(50))
-     Reminder = Column(DateTime)
-     Target = Column(Boolean)
-     Created_at = Column(DateTime, default=datetime.utcnow)
-     Updated_at = Column(DateTime)
-     Average = Column(Integer)
-  
-     def __str__(self):
-         """
-             returns a string representation of the class 
-         """
-         return f"Date: {self.Days} Course: {self.Course} Topic: {self.Topic}\
-                 Average: {self.Average} Reminder: {self.Reminder}\
-                 Created: {self.Created_at}"
+
+
+class JSCourse(Base, Auto_courses):
+    __tablename__ = 'JavascriptDB'
+    id = Column(Integer, primary_key=True)
+    user_ID = Column(Integer, ForeignKey('user_info.id'))  
+
 
 class user_id(Base, UserMixin):
     """
@@ -70,8 +65,9 @@ class user_id(Base, UserMixin):
     Password = Column(String(300))
     Created_at = Column(DateTime, default=datetime.utcnow)
     Updated_at = Column(DateTime)
-    schedules = relationship('User', backref='User', lazy='dynamic')
-    auto_schedules = relationship('AutoSchedule', backref='AutoSchedule', lazy='dynamic')
+    schedules = relationship('User', backref='January', lazy='dynamic')
+    auto_schedules = relationship('AutoSchedule', backref='PythonDB', lazy='dynamic')
+    JScourse = relationship('JSCourse', backref='JSCourse', lazy='dynamic')
    
     
     def __str__(self):
