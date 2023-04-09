@@ -27,6 +27,8 @@ function getCookie(cname) {
 $(document).ready(function() {
     // Get the textarea element
     var textarea = $("#my-chat-input");
+    var container = $('.chat-container');
+    container.scrollTop(container.prop("scrollHeight"));
 
     // Attach the focus and blur events
     textarea.on("focus", function() {
@@ -46,47 +48,50 @@ $(document).ready(function() {
 
 
 // function makes a call to the openai api for the chatbot functionality 
-function chatlog () {
-// Get user value from the input field
-              var inputMsg = $("#my-chat-input").val();
-              var postData = { "text" : inputMsg };
-              $("#my-chat-input").val("");
-// Make a POST request to the RESTFULAPI using the ajax method to invoke chatbot functionality
-              $.ajax({
-                  url: 'http://127.0.0.1:5001/api/v1/help/',
-                  type: 'POST',
-                  headers: {
-                          "Content-Type": "application/json",
-                              },
-                  data: JSON.stringify(postData),
-                  beforeSend: function(xhr) {
-                        xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-                    },
-                  success: function(response) {
-// upon success get response from request and append response to the chatbot div
-                      var outputMsg = Object.values(response);
-                       var msg = JSON.stringify(outputMsg).replace(/\n|\[|\]/g, '');;
-                      $('#nav-id').css('border', '.2em solid #39FF14');
-                      console.log(outputMsg);
-                      var chatLog = "<div class='sent-message'><p id='sent'>" + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
-                        $(".chat-conversation").append(chatLog);
-                      ouputMsg = {}
-                  },
-              error: function(jqXHR, textStatus, errorThrown) {
-// upon error log error message and output a flash message on the chatbot div
-                console.log('Error', textStatus, errorThrown);
-                $('#nav-id').css('border', '.2em solid #FF5349');
-                var message = $("<div>");
-                message.addClass("flash-message fail");
-                message.text("Bot Server down please help report issue!");
-                $("body").append(message);
-               // Automatically hide the message after a few seconds
-               setTimeout(function() {
-               message.hide();
-               }, 7000);
-              }
-              })
-          };
+function chatlog() {
+  // Get user value from the input field
+  var inputMsg = $("#my-chat-input").val();
+  var postData = { "text": inputMsg };
+  $("#my-chat-input").val("");
+  // Make a GET request to get conversation history and append to the chatbot div
+      
+      // Make a POST request to the RESTFULAPI to invoke chatbot functionality
+      $.ajax({
+        url: 'http://127.0.0.1:5001/api/v1/help/',
+        type: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: JSON.stringify(postData),
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+        },
+        success: function(response) {
+          // upon success get response from request and append response to the chatbot div
+          var outputMsg = Object.values(response);
+          var msg = JSON.stringify(outputMsg).replace(/\n|\[|\]/g, '');
+          $('#nav-id').css('border', '.2em solid #39FF14');
+          var chatLog = "<div class='sent-message'><p id='sent'>" + inputMsg + "</p></div><div class='replied-message'><p id='received'>" + msg + "</p></div>";
+          $(".chat-conversation").append(chatLog);
+          outputMsg = {};
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          // upon error log error message and output a flash message on the chatbot div
+          console.log('Error', textStatus, errorThrown);
+          $('#nav-id').css('border', '.2em solid #FF5349');
+          var message = $("<div>");
+          message.addClass("flash-message fail");
+          message.text("Bot Server down please help report issue!");
+          $("body").append(message);
+          
+          // Automatically hide the message after a few seconds
+          setTimeout(function() {
+            message.hide();
+          }, 7000);
+        }
+      })
+    }
+
 
 // function makes a call to the RESTFul api to create a new schedule 
 $(document).ready(function() {

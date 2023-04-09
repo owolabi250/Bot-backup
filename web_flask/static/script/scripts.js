@@ -24,19 +24,19 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 
-    const dropdownButton = document.getElementById("my-dropdownMenuButton");
-    const dropdownMenu = document.querySelector(".my-dropdown-menu");
+  //  const dropdownButton = document.getElementById("my-dropdownMenuButton");
+   // const dropdownMenu = document.querySelector(".my-dropdown-menu");
 
-    dropdownButton.addEventListener("click", function() {
-    dropdownMenu.classList.toggle("show");
-    });
+   // dropdownButton.addEventListener("click", function() {
+   // dropdownMenu.classList.toggle("show");
+   // });
 
-    dropdownMenu.addEventListener("mouseout", function() {
-    dropdownMenu.classList.remove("show");
-    });
-    dropdownMenu.addEventListener("mouseover", function() {
-    dropdownMenu.classList.add("show");
-    });
+  //  dropdownMenu.addEventListener("mouseout", function() {
+  //  dropdownMenu.classList.remove("show");
+   // });
+   // dropdownMenu.addEventListener("mouseover", function() {
+   // dropdownMenu.classList.add("show");
+   // });
 
 
 });
@@ -87,7 +87,7 @@ $('#my-btn').click(function() {
            console.log('Error', Status, error);
            var message = $("<div>");
            message.addClass("flash-message fail");
-           message.text("some error occured while Deleting data!" + error);
+           message.text("error occured while Deleting data!" + ' ' + error);
            $("body").append(message);
            // Automatically hide the message after a few seconds
              setTimeout(function() {
@@ -198,7 +198,7 @@ $(document).ready(function() {
             error: function(error) {
               var message = $("<div>");
              message.addClass("flash-message fail");
-             message.text("some error occured while updating Data!", error);
+             message.text("some error occured while updating Data!", +' '+ error);
              $("body").append(message);
   
              // Automatically hide the message after a few seconds

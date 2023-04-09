@@ -108,7 +108,7 @@ def quiz():
         flash('You need to be logged in to view this page', 'danger')
         return redirect(url_for('Main.login'))
     if auto:
-        bot = Checker(ID, 'auto')
+        bot = Checker(ID, course)
         data_id = bot.task_ID
     else:
         bot = Checker(ID)
@@ -134,7 +134,9 @@ def dashboard():
     data = models.storage.view(ID)[0].get(ID)
     files = {
             "Python" : data.auto_schedules,
-            "Javascript" : data.JScourse
+            "Javascript" : data.JScourse,
+            "React" : data.Reactcourse,
+            "C" : data.C_course
         }
     course = request.args.get('myID')
     doc = None
@@ -161,5 +163,9 @@ def articles():
         return render_template('articles.html', status=auto)
     elif auto and course == 'Javascript':
         return render_template('JSarticles.html', status=auto)
+    elif auto and course == 'React':
+        return render_template('Reactarticles.html', status=auto)
+    elif auto and course == 'C':
+        return render_template('C_articles.html', status=auto)
     else:
         return render_template('auto_reg.html')

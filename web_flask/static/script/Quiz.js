@@ -14,12 +14,16 @@ function getCookie(cname) {
   return "";
 }
 
+
 $(document).ready(function() {
      $('#quiz-btn').click(function() {
         var requestsent = false
         if (requestsent) {
           return;
         }
+          $(this).html(
+              '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
+          );
        var answers = {};
        var data = {};
        var dataID = $('.data_id').text().trim().split(' ').pop();
@@ -49,6 +53,7 @@ $(document).ready(function() {
   },
          success: function(response) {
            console.log(response);
+             $("#quiz-btn").html('success').find('span').remove();
             var correction_button = '<button id="view-correction" class="btn btn-info">View Correction</button>';
              if ($('#view-correction').length === 0) {
                     $('#quiz-btn').after(correction_button);
@@ -188,5 +193,4 @@ $(document).ready(function() {
 				$(this).siblings('iframe').toggle();
 			});
 		});
-
 

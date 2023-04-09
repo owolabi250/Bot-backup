@@ -5,7 +5,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from flask_login import UserMixin
+import random
+import time
+import string
 import jwt
+import json
 
 Base = declarative_base()
 
@@ -53,6 +57,15 @@ class JSCourse(Base, Auto_courses):
     id = Column(Integer, primary_key=True)
     user_ID = Column(Integer, ForeignKey('user_info.id'))  
 
+class ReactCourse(Base, Auto_courses):
+    __tablename__ = 'ReactDB'
+    id = Column(Integer, primary_key=True)
+    user_ID = Column(Integer, ForeignKey('user_info.id'))
+
+class C_Course(Base, Auto_courses):
+    __tablename__ = 'C-DB'
+    id = Column(Integer, primary_key=True)
+    user_ID = Column(Integer, ForeignKey('user_info.id'))
 
 class user_id(Base, UserMixin):
     """
@@ -63,11 +76,14 @@ class user_id(Base, UserMixin):
     User_name = Column(String(100))
     Email = Column(String(100))
     Password = Column(String(300))
+    Phone_number = Column(String(100))
     Created_at = Column(DateTime, default=datetime.utcnow)
     Updated_at = Column(DateTime)
     schedules = relationship('User', backref='January', lazy='dynamic')
     auto_schedules = relationship('AutoSchedule', backref='PythonDB', lazy='dynamic')
     JScourse = relationship('JSCourse', backref='JSCourse', lazy='dynamic')
+    Reactcourse = relationship('ReactCourse', backref='ReactDB', lazy='dynamic')
+    C_course = relationship('C_Course', backref='C-DB', lazy='dynamic')
    
     
     def __str__(self):
@@ -104,4 +120,27 @@ class user_id(Base, UserMixin):
             return None
         user = models.storage.access(my_id, 'id', user_id)
         return user
+    
+    def generate_confirmation_code(self: str): 
+        code = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+        now = time.time()
+        expiration_time = now + 600
+        data = {'code': code, 'expiration_time': expiration_time}
+        print(code)
+        with open('encryptFile.json', 'w') as f:
+            json.dump(data, f)
+        return (code, expiration_time)
+
+    @staticmethod
+    def verify_confirmation_code(code: str):
+        with open('encryptFile.json', 'r') as f:
+            data = json.load(f)
+        timestamp = int(time.time())
+        if data.get('code') == code:
+            if timestamp - data.get('expiration_time') < 600:
+                return True
+        return False
+
+    
+
 

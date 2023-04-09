@@ -32,7 +32,7 @@
             <fieldset  class="form-group">
                 <legend class="border-bottom mb-4 signup">LOGIN</legend> 
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="margin-right: 5px;">
+                      <div class="input-group-prepend" style="margin-right: 5px;">
                             <span class="input-group-text mb-1" id="label-log">{{ form.email.label(class="form-label") }} </span>
                         </div>
                             {% if form.email.errors %}
@@ -48,9 +48,9 @@
                     </div>
                     <br>
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend" style="margin-right: 5px;">
-                            <span class="input-group-text mb-1" id="label-log">{{ form.password.label(class="form-label") }} </span>
-                        </div>
+                       <div class="input-group-prepend">
+                        <div class="input-group-text mb-1" id="label-log">{{ form.password.label(class="form-label") }} </div>
+                             </div>
                     {% if form.password.errors %}
                     {{ form.password(class="form-control form-control-sm is-invalid") }}
                         <div class="invalid-feedback">

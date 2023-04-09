@@ -6,13 +6,13 @@ from models.Reminder import Reminder
 from models import storage
 from datetime import datetime, timedelta
 from flask_login import current_user, login_required
-from models.baseModel import User, user_id, AutoSchedule, JSCourse
+from models.baseModel import (User, user_id, AutoSchedule, JSCourse,
+                                ReactCourse, C_Course)
 from functools import wraps
+from web_flask import mail
+from flask_mail import Message
 import jwt
 import json
-
-#bot = cs()
-#data = bot.View()
 
 
 def token_required(f):
@@ -121,7 +121,9 @@ def auto_dash(current_user):
     data = storage.view(ID)[0].get(ID)
     files = {
             "Python" : [AutoSchedule, data.auto_schedules, 'Python_Courses.json'],
-            "Javascript" : [JSCourse, data.JScourse, 'JSCourse.json']
+            "Javascript" : [JSCourse, data.JScourse, 'JSCourse.json'],
+            "React" : [ReactCourse, data.Reactcourse, 'React_Courses.json'],
+            "C" : [C_Course, data.C_course, 'C_courses.json']
             }
     req_json = request.get_json()
     course = req_json.get('Course')

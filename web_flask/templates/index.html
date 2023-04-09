@@ -46,7 +46,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('Main.settings') }}">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="{{ url_for('Main.logout') }}">Logout</a></li>
@@ -107,18 +107,18 @@
                                         <a class="nav-link" id="course-opt" href="{{ url_for('Main.dashboard', myID='Javascript') }}">
                                         Javascript
                                         </a>
-                                        <a class="nav-link" id="course-opt" href="{{ url_for('Main.quiz') }}">
+                                        <a class="nav-link" id="course-opt" href="{{ url_for('Main.dashboard', myID='React') }}">
                                         React
                                         </a>
-                                        <a class="nav-link" id="course-opt" href="{{ url_for('Main.quiz') }}">
+                                        <a class="nav-link" id="course-opt" href="{{ url_for('Main.dashboard', myID='C') }}">
                                         C
                                         </a>
                                     </nav>
                                 </div>
 
                             <div class="sb-sidenav-menu-heading">Features</div>
-                            <a class="nav-link" href="{{ url_for('Main.help') }}">
-                                <div class="sb-nav-link-icon"><iconify-icon icon="fluent-mdl2:chat-bot" height="30" width="30" style="color: #fff;" onclick="ShowBox();"></iconify-icon></div>
+                            <a class="nav-link" id="chat-link" href="{{ url_for('Main.help') }}">
+                                <div class="sb-nav-link-icon" id="chat-link"><iconify-icon icon="fluent-mdl2:chat-bot" height="30" width="30" style="color: #fff;" onclick="ShowBox();"></iconify-icon></div>
                                 Chat Bot
                             </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -329,7 +329,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="static/script/scripts.js"></script>
         <script src="static/script/Quiz.js"></script>
-         <script src="static/script/charts.js"></script>
+        <!--    <script src="static/script/charts.js"></script> -->
+        <script src="static/script/settings.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
        <script src="static/assets/demo/chart-pie-demo.js"></script>
        <script src="static/assets/demo/chart-bar-demo.js"></script> 

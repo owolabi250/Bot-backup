@@ -69,6 +69,33 @@
 *::after {
   box-sizing: border-box;
 }
+#settings-card {
+    backdrop-filter: blur(6px) saturate(152%);
+    -webkit-backdrop-filter: blur(6px) saturate(152%);
+    background-color: rgba(17, 25, 40, 0.26);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    /* add the following properties */
+    width: 100%;
+    max-width: 40rem;
+}
+
+/* add media queries for different screen sizes */
+@media screen and (max-width: 768px) {
+    #settings-card {
+        max-width: 30rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #settings-card {
+        max-width: 20rem;
+    }
+}
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 
 .course-title {
        font-size: 40px;

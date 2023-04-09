@@ -973,3 +973,182 @@
 7: 8. What is the "__init__.py" file in a module?
 8: 9. How do you install a third-party module in Python?
 9: 10. Can you use modules in other programming languages besides Python?
+0: 1. What is the difference between a syntax error and a runtime error?
+1: 2. What is the purpose of using try-except blocks in Python?
+2: 3. How can you handle multiple exceptions in a single try-except block?
+3: 4. What is the difference between the "raise" and "assert" statements in Python?
+4: 5. What is the purpose of the "finally" block in a try-except statement?
+5: 6. How can you create your own custom exceptions in Python?
+6: 7. What is the difference between a NameError and a ValueError?
+7: 8. What is the purpose of the "traceback" module in Python?
+8: 9. How can you use the "logging" module to handle errors and exceptions in Python?
+9: 10. What is
+0: 1. What is the difference between var, let, and const in ES6?
+1: 2. How do arrow functions differ from regular functions in ES6?
+2: 3. What is destructuring in ES6 and how is it used?
+3: 4. What is the spread operator in ES6 and how is it used?
+4: 5. How does the for...of loop differ from the for...in loop in ES6?
+5: 6. What is the purpose of the template literals in ES6?
+6: 7. How does the class syntax in ES6 differ from the prototype-based syntax?
+7: 8. What is the purpose of the Promise object in ES6?
+8: 9. How does the async/await syntax in ES6 simplify asynchronous programming?
+9: 10. What is the purpose of
+0: 1. What is the difference between let and var in ES6?
+1: 2. How do you declare a constant variable in ES6?
+2: 3. What is the purpose of arrow functions in ES6?
+3: 4. How do you use template literals in ES6?
+4: 5. What is the spread operator in ES6 and how is it used?
+5: 6. What is destructuring in ES6 and how is it used?
+6: 7. How do you create a class in ES6?
+7: 8. What is the purpose of the super keyword in ES6 classes?
+8: 9. How do you use the import and export statements in ES6 modules?
+9: 10. What is the difference between default and named exports in ES6 modules?
+0: 1. What is the difference between var, let, and const in ES6?
+1: '2. What is arrow function in ES6? '
+2: '3. What is the spread operator in ES6? '
+3: '4. What is destructuring in ES6? '
+4: '5. What is the purpose of template literals in ES6? '
+5: '6. What is the difference between for...in and for...of loops in ES6? '
+6: '7. What is a Promise in ES6? '
+7: '8. What is the purpose of the Map object in ES6? '
+8: '9. What is the difference between synchronous and asynchronous code in ES6? '
+9: 10. What is the purpose of the async/await syntax in ES6?
+0: 1. What is the difference between let and var in ES6?
+1: 2. What is the purpose of the arrow function in ES6?
+2: 3. What is a template literal in ES6?
+3: 4. How can you declare a constant variable in ES6?
+4: 5. What is the spread operator in ES6 and how is it used?
+5: 6. What is destructuring in ES6 and how is it used?
+6: 7. What is the purpose of the for...of loop in ES6?
+7: 8. What is the difference between a Map and a Set in ES6?
+8: 9. What is the purpose of the Promise object in ES6?
+9: 10. How can you import and export modules in ES6?
+0: 1. What is the difference between `let` and `var` in ES6?
+1: 2. How do you declare a constant variable in ES6?
+2: 3. What is the purpose of template literals in ES6?
+3: 4. What is the spread operator in ES6 and how is it used?
+4: 5. How do you declare a default parameter value in a function in ES6?
+5: 6. What is the difference between `map()` and `forEach()` methods in ES6?
+6: 7. What is the purpose of arrow functions in ES6?
+7: 8. How do you import and export modules in ES6?
+8: 9. What is the purpose of the `class` keyword in ES6?
+9: 10. How do you use destructuring assignment in ES6
+0: 1. What is the purpose of ES6-Modules?
+1: 2. How do you export a module in ES6?
+2: 3. What is the difference between named exports and default exports?
+3: 4. Can you have multiple default exports in a single module?
+4: 5. How do you import a module in ES6?
+5: 6. What is a symbol in JavaScript?
+6: 7. How do you create a symbol in JavaScript?
+7: 8. Can symbols be used as object keys?
+8: 9. What is the purpose of using symbols in JavaScript?
+9: 10. How do you access the description of a symbol in JavaScript?
+0: 1. What is the difference between map() and filter() methods in ES6?
+1: 2. How can you use the reduce() method to find the sum of an array of numbers in
+  ES6?
+2: 3. What is the purpose of the find() method in ES6?
+3: 4. How can you use the sort() method to sort an array of objects in ES6?
+4: 5. What is the difference between slice() and splice() methods in ES6?
+5: 6. How can you use the forEach() method to iterate over an array in ES6?
+6: 7. What is the purpose of the some() method in ES6?
+7: 8. How can you use the includes() method to check if an array contains a specific
+  value in ES6?
+8: '9'
+0: 1. What is the difference between map() and filter() methods in ES6?
+1: 2. How can you use the reduce() method to find the sum of an array of numbers?
+2: 3. What is the purpose of the find() method in ES6?
+3: 4. How can you use the sort() method to sort an array of objects based on a specific
+  property?
+4: 5. What is the difference between slice() and splice() methods in ES6?
+5: 6. How can you use the forEach() method to iterate over an array and perform a
+  specific action on each element?
+6: 7. What is the purpose of the every() method in ES6?
+7: 8. How can you use the includes() method to check if an array contains a specific
+  value?
+0: 1. What is the lockboxes problem in Python?
+1: 2. What is the purpose of the lockboxes problem?
+2: 3. What data structure is commonly used to solve the lockboxes problem?
+3: 4. How do you check if a box can be opened in the lockboxes problem?
+4: 5. What is the time complexity of the algorithm used to solve the lockboxes problem?
+5: 6. Can the lockboxes problem be solved using recursion? Why or why not?
+6: 7. How do you implement the lockboxes problem using a depth-first search algorithm?
+7: 8. What is the difference between a closed and an open box in the lockboxes problem?
+8: 9. How do you handle circular dependencies in the lockboxes problem?
+9: 10. What is the best approach to solving
+0: 1. What is the purpose of variable annotations in Python?
+1: 2. Can variable annotations be used to enforce type checking in Python?
+2: 3. What is the syntax for declaring a variable annotation in Python?
+3: 4. Are variable annotations required for Python code to run?
+4: 5. Can variable annotations be used to specify default values for variables?
+5: 6. Are variable annotations visible at runtime in Python?
+6: 7. Can variable annotations be used to specify the scope of a variable in Python?
+7: 8. Are variable annotations limited to certain types of variables in Python?
+8: 9. Can variable annotations be used in conjunction with type hints in Python?
+9: 10. How do variable annotations differ from variable declarations in Python?
+0: 1. What is a Promise in JavaScript?
+1: 2. How do you create a new Promise in JavaScript?
+2: 3. What are the three states of a Promise?
+3: 4. How do you handle a resolved Promise?
+4: 5. How do you handle a rejected Promise?
+5: 6. What is the purpose of the .then() method in a Promise?
+6: 7. What is the purpose of the .catch() method in a Promise?
+7: 8. How do you chain multiple Promises together?
+8: 9. What is the difference between Promise.all() and Promise.race()?
+9: 10. How do you handle errors in a Promise chain?
+0: 1. What is the difference between synchronous and asynchronous programming in Python?
+1: 2. How can you create an asynchronous function in Python?
+2: 3. What is an event loop in Python asyncio?
+3: 4. How can you run multiple asynchronous functions concurrently in Python?
+4: 5. What is the purpose of the "await" keyword in Python asyncio?
+5: 6. How can you handle errors in Python asyncio?
+6: 7. What is the difference between asyncio.sleep() and time.sleep() in Python?
+7: 8. How can you cancel an asynchronous task in Python asyncio?
+8: 9. What is the purpose of the "async with" statement in Python asyncio?
+9: 10. How can you use Python asyncio to perform network I/O operations asynchronously?
+0: 1. What is the purpose of the asyncio module in Python?
+1: 2. What is the difference between asyncio and threading in Python?
+2: 3. How do you create an asynchronous task in Python?
+3: 4. What is the difference between async and await in Python?
+4: 5. What is the difference between synchronous and asynchronous programming?
+5: 6. What are the advantages of using asynchronous programming in Python?
+6: 7. What is the event loop in Python asyncio?
+7: 8. How do you debug an asynchronous task in Python?
+8: 9. What is the difference between a coroutine and a generator in Python?
+9: 10. How do you create a task in Python asyncio?
+0: 1. What is the purpose of the asyncio module in Python?
+1: 2. What is the difference between synchronous and asynchronous programming?
+2: 3. How do you create an asynchronous task in Python?
+3: 4. What is the difference between a coroutine and a generator in Python?
+4: 5. What is the event loop in Python asyncio?
+5: 6. How do you use the asyncio.gather() function?
+6: 7. What is the difference between asyncio.run() and asyncio.get_event_loop().run_until_complete()?
+7: 8. What is the purpose of the asyncio.sleep() function?
+8: 9. How do you create a thread pool executor in Python?
+0: 1. What is Async IO in Python?
+1: 2. What are the advantages of using Async IO in Python?
+2: 3. What are the main components of Async IO in Python?
+3: 4. How does Async IO in Python work?
+4: 5. What is the difference between Async IO and multithreading in Python?
+5: 6. What are the different types of Async IO operations in Python?
+6: 7. How do you create an Async IO task in Python?
+7: 8. What are the best practices for using Async IO in Python?
+8: 9. What are the common pitfalls of using Async IO in Python?
+9: 10. What are the benefits of using Async IO in Python compared
+0: 1. What is the purpose of Async IO in Python?
+1: 2. How does Async IO help improve performance in Python applications?
+2: 3. What is the difference between Async IO and threading in Python?
+3: 4. What is the syntax for creating an asynchronous function in Python?
+4: 5. What are the advantages of using Async IO over threading in Python?
+5: 6. What are the two main components of Async IO in Python?
+6: 7. What is the purpose of the asyncio.run() function in Python?
+7: 8. How does the asyncio.gather() function work in Python?
+8: 9. What is the difference between the asyncio.run() and asyncio.wait
+0: 1. What is the purpose of the asyncio module in Python?
+1: 2. What is the difference between synchronous and asynchronous programming?
+2: 3. What is the syntax for creating an asynchronous function in Python?
+3: 4. How does the asyncio module help to improve the performance of Python applications?
+4: 5. What is the event loop in Python asyncio?
+5: 6. What is the difference between asyncio.run() and asyncio.get_event_loop().run_until_complete()?
+6: 7. How do you create a task in Python asyncio?
+7: 8. What is the difference between asyncio.sleep() and time.sleep()?
+8: 9. What is the purpose of the asyncio

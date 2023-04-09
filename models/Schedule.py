@@ -82,7 +82,9 @@ class Create_Schedule(User):
             new = models.storage.access(my_id, 'id', user_id)
             file = {
                     "Python" : new.auto_schedules.all(),
-                    "Javascript" : new.JScourse.all()
+                    "Javascript" : new.JScourse.all(),
+                    "React" : new.Reactcourse.all(),
+                    "C" : new.C_course.all()
                 }
             if table in file:
                 tasks = file.get(table)
@@ -115,7 +117,7 @@ class Create_Schedule(User):
                     new_dict_2[k] = v
         elif choice.lower() == "missed":
             for k, v in new_dict.items():
-                if v["Date"] < short_date and v['Target'] == False:
+                if v["Date"] < short_date and v['Target'] is False:
                     new_dict_2[k] = v
         else:
             raise ValueError(f"view either [upcoming, daily, missed]")

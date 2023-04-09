@@ -43,7 +43,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.username(class="form-control form-control") }}
+                        {{ form.username(type="text", autocomplete="username", class="form-control form-control") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -75,7 +75,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.password(class="form-control form-control") }}
+                        {{ form.password(type="password", autocomplete="new-password", class="form-control form-control") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -91,12 +91,12 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                    {{ form.confirm_password(class="form-control") }}
+                    {{ form.confirm_password(type="password", autocomplete="new-password", class="form-control") }}
                     {% endif %}
                 </div>
             </fieldset>
             <div class="form-group" id="frm-btn">
-                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.submit(class="btn btn-outline-success") }}
             </div>
     
         <br>

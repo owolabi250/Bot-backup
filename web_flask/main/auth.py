@@ -4,7 +4,7 @@ from models.baseModel import user_id
 from .form import RegisterForm, LoginForm, RequestResetForm, ResetPasswordForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, current_user, logout_user, login_required
-from .. import login_manager, mail
+from web_flask import login_manager, mail
 from flask_mail import Message
 import models
 import uuid
@@ -23,7 +23,7 @@ def signup():
     if form.validate_on_submit():
         password = generate_password_hash(form.password.data)
         user = user_id(id=str(uuid.uuid4()), User_name=form.username.data,
-                       Email=form.email.data, Password=password)
+                       Email=form.email.data, phone_number=None, Password=password)
         models.storage.new(user)
         models.storage.save()
         models.storage.close()
@@ -40,6 +40,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = models.storage.access(form.email.data, 'Email', user_id)
+        models.storage.close()
         if user and check_password_hash(user.Password, form.password.data):
             login_user(user, remember=form.remember.data)
             my_id = current_user.id
@@ -53,7 +54,6 @@ def login():
         else:
             flash(f'Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
-
 @Main.route('/logout')
 @login_required
 def logout():
@@ -63,15 +63,18 @@ def logout():
 
 
 def send_reset_email(user):
-    token = user.get_reset_token()
-    msg = Message('Password Reset Request',
-                  sender='noreply@demo.com',
-                  recipients=[user.Email])
-    msg.body = f'''To reset your password, visit the following link:
-{url_for('Main.reset_token', token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
-'''
-    mail.send(msg)
+    try:
+        token = user.get_reset_token()
+        msg = Message('Password Reset Request',
+                    sender='noreply@demo.com',
+                    recipients=[user.Email])
+        msg.body = f'''To reset your password, visit the following link:
+        {url_for('Main.reset_token', token=token, _external=True)}
+        If you did not make this request then simply ignore this email and no changes will be made.
+    '''
+        mail.send(msg)
+    except Exception as e:
+        return str(e)
 
 
 @Main.route('/reset', methods=['GET', 'POST'])
@@ -81,6 +84,7 @@ def reset():
     form = RequestResetForm()
     if form.validate_on_submit():
         user = models.storage.access(form.email.data, 'Email', user_id)
+        models.storage.close()
         send_reset_email(user)
         flash('An email has been sent with instructions to reset your password.', 'info')
         return redirect(url_for('Main.login'))
@@ -104,3 +108,4 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('Main.login'))
     return render_template('reset_pass.html', title='Reset Password', form=form)
+

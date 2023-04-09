@@ -70,10 +70,10 @@ CREATE TABLE `PythonDB` (
       FOREIGN KEY (`user_ID`) REFERENCES `user_info` (`id`)
     ); */
 
-DROP TABLE IF EXISTS `JavascriptDB`;
+DROP TABLE IF EXISTS `C-DB`;
  
 
-CREATE TABLE `JavascriptDB` (
+CREATE TABLE `C-DB` (
       `ID` INT NOT NULL AUTO_INCREMENT,
       `Days` VARCHAR(50),
       `user_ID` VARCHAR(200) NOT NULL,

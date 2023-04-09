@@ -121,3 +121,199 @@
     ' What is the purpose of the "constructor" method in a class?5': constructors
       are used to initialise a class object when creating an instance of that class
     ' What is the syntax for creating a class in ES6?2': class Myclass {...}
+'18':
+  'False':
+    ' How do you use the import and export statements in ES6 modules?10': import by
+      using the import keyword followed by name of function and then path, export
+      by using the extends default keyword followed byname of function
+    ' What is the difference between default and named exports in ES6 modules?': default
+      has a specified path during declaration in case a named export is available
+    ' What is the spread operator in ES6 and how is it used?6': spread operator is
+      used to decompose and array into an obj
+  'True':
+    ' How do you create a class in ES6?8': by using the class keyword followed by
+      the name of the class
+    ' How do you declare a constant variable in ES6?3': by using the const keyword
+      followed by the name of the variable
+    ' How do you use template literals in ES6?5': syntax is `hello ${varname} `
+    ' What is destructuring in ES6 and how is it used?7': destructuring  is used to
+      unpack the value of an array or object into another by decaying the value of
+      the object assigned on the right hand into the obj on the left
+    ' What is the difference between let and var in ES6?2': let has block scope and
+      must be declared before use also mutable, var is mutable enables variable hoisting
+    ' What is the purpose of arrow functions in ES6?4': the purpose is to simplify
+      function declarations syntax and also works good when interacting with the this
+      keyword
+    ' What is the purpose of the super keyword in ES6 classes?9': the super key word
+      is used to inherit a property or method from a parent class in a child class
+'19':
+  'False':
+    ' How do you access the description of a symbol in JavaScript?': use can use the
+      Symbol.keyfor(key) keyword to access the description of a symbol
+    ' What is the difference between named exports and default exports?4': default
+      export can only be used once in a module, they are mostly used with arow or
+      anonymous function while export keyword can be used on any class function or
+      variable
+  'True':
+    ' Can symbols be used as object keys?9': yes symbols can be used as object keys
+    ' Can you have multiple default exports in a single module?5': no you can only
+      have a single default export
+    ' How do you create a symbol in JavaScript?8': you can create one by using the
+      Symbol() keyword which also receives an optional key in its parenthesis upon
+      declaration
+    ' How do you export a module in ES6?3': by using the export keyword eg export
+      default const nameOfVariable
+    ' How do you import a module in ES6?6': by using the import keyword followed by
+      name of function, class or variable then the module path, also exporting none
+      default value are included in a curly brace
+    ' What is a symbol in JavaScript?7': Symbols are datatype in javascript that helps
+      give an object a unique property
+    ' What is the purpose of ES6-Modules?2': it helps reduces code duplication and
+      helps code more. readable and reuseable
+    ' What is the purpose of using symbols in JavaScript?10': it is used to create
+      a unique identification for an object, also used to create private properties
+      within a class or object
+'20':
+  'False':
+    ' How can you use the includes() method to check if an array contains a specific value?': this
+      is used to add a new element to an array
+    ' What is the difference between map() and filter() methods in ES6?2': the filter
+      method is used to find a property unique to an array while map is used to group
+      an element into an array
+    ' What is the difference between slice() and splice() methods in ES6?6': using
+      the splice() method creates a new array from the olde one
+    ' What is the purpose of the every() method in ES6?8': this loops over an array
+      and creates a new key/value pair of the old array
+    ' What is the purpose of the find() method in ES6?4': the find method is used
+      to search for a particular element in an array returns true if found else undefined
+  'True':
+    ' How can you use the forEach() method to iterate over an array and perform a specific action on each element?7': you
+      can use the forEach() method to loop over an iterable new arr = oldarr.forEach(...)
+    ' How can you use the reduce() method to find the sum of an array of numbers?3': const
+      sum = arr.reduce((index, indexID) => index + indexID) this returns the total
+      sum of the array
+    ' How can you use the sort() method to sort an array of objects based on a specific property?5': const
+      arr = [1,2,3,2,1] const sortedarr = arr.sort() which arranges all the element
+      in an array
+'22':
+  'False':
+    ' Can variable annotations be used to specify default values for variables?6': 'No'
+  'True':
+    ' Are variable annotations limited to certain types of variables in Python?9': you
+      can declare over any time of variables in python
+    ' Are variable annotations required for Python code to run?5': no they are not
+      required to run python code
+    ' Are variable annotations visible at runtime in Python?7': 'No'
+    ' Can variable annotations be used in conjunction with type hints in Python?10': 'yes'
+    ' Can variable annotations be used to enforce type checking in Python?3': no it
+      can not be used to enforce type checking
+    ' Can variable annotations be used to specify the scope of a variable in Python?8': it
+      can not be used to specify the scope of a variable
+    ' How do variable annotations differ from variable declarations in Python?': variable
+      annotation is used toe indicate the data type stored in a variable for documentation
+      purposes
+    ' What is the purpose of variable annotations in Python?2': its used for proper
+      code documentation and helps improve debugging
+    ' What is the syntax for declaring a variable annotation in Python?4': 'varname:
+      dataType eg myVar: float = 3.14'
+'24':
+  'False': {}
+  'True':
+    ' How do you chain multiple Promises together?9': you can handle error in a promise
+      chain by using the .catch() method
+    ' How do you create a new Promise in JavaScript?3': you create a new Promise by
+      using the syntax let newPromise = new Promise((resolve, reject) =>  do  some
+      stuffs)
+    ' How do you handle a rejected Promise?6': you handle a rejected promise by calling
+      the .catch((err) => console.log(err)) method
+    ' How do you handle a resolved Promise?5': you handle a resolved promise by call
+      the .then((res) => console.log(res))  method which can also be chained
+    ' What are the three states of a Promise?4': the 3 states of a promise are Fulfilled
+      , rejected or pending
+    ' What is a Promise in JavaScript?2': a promise helps make asynchronous  functions
+      in our script,
+    ' What is the purpose of the ': you can chain multiple promise through this syntax
+      promise.then((res) => console.log(res)).then((res) => console.log(res)) in the
+      follwoing we have 2 then method chained together
+    catch() method in a Promise?8: promise .all() waits for all promises to be resolved
+      before returning the value fulfilled by a promise while .race() method wait
+      for the first promise to be resolved and returns the value
+    then() method in a Promise?7: it is used to handle a rejected promise
+'25':
+  'False': {}
+  'True':
+    ' How can you create an asynchronous function in Python?3': 'by using the async
+      keyword eg async def functionName():'
+    ' How can you run multiple asynchronous functions concurrently in Python?5': you
+      can run multiple asynchronous functions by calling the await keyword
+    ' What is an event loop in Python asyncio?4': an event loop keeps track of all
+      the programs being run and ensures control is passed to the right function
+    ' What is the difference between asyncio': time.sleep() function pauses the execution
+      of the program entirely till the time is elapsed
+    ' What is the difference between synchronous and asynchronous programming in Python?2': Asynchronous
+      programs can pause execution and pass operation to another part of the program
+      while awaiting completion, while synchronous follows the normal  program flow
+    ' What is the purpose of the "await" keyword in Python asyncio?6': the await keyword
+      helps make an async function run concurrently by passing control to the rest
+      part of the program till the awaited function is done executing
+    sleep() in Python?8: the async with statement creates a context manager for the
+      function
+'27':
+  'False':
+    ' How do you create an Async IO task in Python?8': ''
+    ' How does Async IO in Python work?5': ''
+    ' What are the benefits of using Async IO in Python compared': ''
+    ' What are the best practices for using Async IO in Python?9': ''
+    ' What is the difference between Async IO and multithreading in Python?6': ''
+  'True':
+    ' What are the advantages of using Async IO in Python?3': it helps utilise CPU
+      time by pausing a program while awaiting its return value and passing execution
+      to other functions in the program
+    ' What are the common pitfalls of using Async IO in Python?10': ''
+    ' What are the different types of Async IO operations in Python?7': ''
+    ' What are the main components of Async IO in Python?4': ''
+    ' What is Async IO in Python?2': is a module that helps carry out asynchronous
+      functions in python
+'27':
+  'False':
+    ' How does Async IO help improve performance in Python applications?3': by pausing
+      execution of a function and passing control to other part of the program
+    ' How does the asyncio': .run ensures all functions are run and returned while
+      wait pauses execution of a function and passes control to the rest part of the
+      program
+    ' What are the advantages of using Async IO over threading in Python?6': is speeds
+      up your program and it ensures all tasks a run and returned rather than the
+      possibility  of being cut short by the cpu in threading
+    ' What are the two main components of Async IO in Python?7': async and await
+    ' What is the difference between Async IO and threading in Python?4': async io
+      maintains a cooperative multitasking which means it waits for a function to
+      finish running while threading is preemptive multitasking
+    ' What is the purpose of the asyncio': async run uses an event loop that enables
+      all queued tasks are ran and control distributed accordingly
+    run() function in Python?8: it groups all the functions that are to be run by
+      the coroutine
+  'True':
+    ' What is the purpose of Async IO in Python?2': it helps pass control to other
+      part of the program while waiting for a function to return a value
+    ' What is the syntax for creating an asynchronous function in Python?5': 'by using
+      the async keyword followed by the function name async def funcName():'
+'28':
+  'False':
+    ' What is the difference between asyncio': no idea
+    ' What is the event loop in Python asyncio?6': it enables all coroutines are executed
+      and control passed to the appropriate task
+    get_event_loop(): one is a coroutine task while time.sleep() pauses all functionality
+      till the delay time elapses
+    run() and asyncio: by using the create_task method eg task = asyncio.create_task(taskName())
+    run_until_complete()?7: to enable asynchronous functions in python
+  'True':
+    ' How does the asyncio module help to improve the performance of Python applications?5': by
+      enabling asynchronous functions that are able to hand over operation to other
+      part of a program thus utilising cpu efficiency
+    ' What is the difference between synchronous and asynchronous programming?3': synchronous
+      follows the normal flow of the program while asynchronous is able to pause and
+      hand control over to other part of the program while awaiting a return value
+    ' What is the purpose of the asyncio module in Python?2': the key purpose is to
+      enable an asyncronous functionality in python
+    ' What is the syntax for creating an asynchronous function in Python?4': by using
+      the async keyword followed by function name eg async def funcName()
