@@ -1,4 +1,14 @@
 let xhr;
+let url = 'http://127.0.0.1:5001/api/v1/settings/'
+let flashMsg = function(msg, type) {
+    let message = $("<div>");
+    message.addClass("flash-message " + type);
+    message.text(msg);
+    $("body").append(message);
+    setTimeout(function() {
+        message.hide();
+    }, 7000);
+}
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -33,7 +43,7 @@ $(document).ready(function () {
                 'option': 'username'
             };
            $.ajax({
-          url: 'http://127.0.0.1:5001/api/v1/settings/',
+          url: url,
           type: 'PUT',
           headers: {
             "Content-Type": "application/json",
@@ -45,20 +55,13 @@ $(document).ready(function () {
           success: function(response) {
             // upon success get response from request and append response to the chatbot div
              location.reload();
+
           },
           error: function(jqXHR, textStatus, errorThrown) {
             // upon error log error message and output a flash message on the chatbot div
             console.log('Error', textStatus, errorThrown);
             $('#nav-id').css('border', '.2em solid #FF5349');
-            var message = $("<div>");
-            message.addClass("flash-message fail");
-            message.text("Incorrect Credentials please check password and try again");
-            $("body").append(message);
-  
-            // Automatically hide the message after a few seconds
-            setTimeout(function() {
-              message.hide();
-            }, 7000);
+            flashMsg(errorThrown, 'fail');
           }
         });
       });
@@ -70,7 +73,7 @@ $(document).ready(function () {
             '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
     );
         xhr = $.ajax({
-            url: 'http://127.0.0.1:5001/api/v1/settings/',
+            url: url,
             type: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +105,7 @@ $(document).ready(function () {
         data['code'] = code;
         data['option'] = 'confirmation';
         $.ajax({
-            url: 'http://127.0.0.1:5001/api/v1/settings/',
+            url: url,
             type: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -133,7 +136,7 @@ $(document).ready(function () {
         data['passkey'] = passkey;
         data['option'] = 'emailreset';
         $.ajax({
-            url: 'http://127.0.0.1:5001/api/v1/settings/',
+            url: url,
             type: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -175,7 +178,7 @@ $(document).ready(function () {
         data['phone_number'] = phone_number;
         data['option'] = 'contact';
         xhr = $.ajax({
-            url: 'http://127.0.0.1:5001/api/v1/settings/',
+            url: url,
             type: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -186,12 +189,14 @@ $(document).ready(function () {
             },
             success: function(response) {
                 console.log(response)
-                $("#phone-contact").html("Success!").find('span').remove();
+                $("#phone-contact").find('span').remove();
+                flashMsg(response.message, 'success');
                 location.reload();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error', textStatus, errorThrown);
-                $("#phone-contact").html("Error!").find('span').remove();
+                $("#phone-contact").find('span').remove();
+                flashMsg(errorThrown, 'fail');
             }
         });
     }); 
@@ -211,7 +216,7 @@ $(document).ready(function() {
         }
     $.ajax({
       type: "PUT",
-      url: "http://127.0.0.1:5001/api/v1/settings/",
+      url: url,
         headers: {
             "Content-Type": "application/json",
         }, 
@@ -258,37 +263,96 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#clear-chatHistory').click(function() {
         var id = $('#usr-id').val();
-        console.log(id)
         $.ajax({
-            url: 'http://127.0.0.1:5001/api/v1/settings/' + id,
+            url: url,
             type: 'DELETE',
-            //headers: {
-             //   "Content-Type": "application/json",
-            //},
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: JSON.stringify({'option': 'chatHistory', 'id': id}),
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('x-access-token', getCookie('access_token'));
             },
             success: function(data) {
-                var msg = data.message
-                var message = $("<div>");
-                message.addClass("flash-message success");
-                message.text(msg);
-                $("body").append(message);
-                setTimeout(function() {
-                    message.hide();
-                }, 7000);
-                location.reload();
+                flashMsg(data.message, 'success');
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log('Error', textStatus, errorThrown);
-                var message = $("<div>");
-                message.addClass("flash-message fail");
-                message.text('Error occured' + ' ' + errorThrown);
-                $("body").append(message);
-                setTimeout(function() {
-                    message.hide();
-                }, 7000);
+                flashMsg(errorThrown, 'fail');
             }
         });
     });
+});
+
+$(document).ready(function() {
+    var checkBox = $('#flexSwitchCheckReverse').val()
+    console.log(checkBox)
+      if (checkBox === 'False') {
+         $('#flexSwitchCheckReverse').attr('checked', false);
+      }
+        if (checkBox === 'True'){
+              $('#flexSwitchCheckReverse').attr('checked', true);
+        }
+$('#flexSwitchCheckReverse').change(function() {
+         var isChecked = $(this).is(':checked');
+        var data = {
+            'isChecked': isChecked,
+            'option': 'checkBox'
+        }
+        if (isChecked) {
+            isChecked = 'true';
+        } else {
+            isChecked = 'false';
+        }
+         $.ajax({
+             url: url,
+             type: "POST",
+             beforeSend: function(xhr) {
+                 xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+             },
+             headers: {
+                 "Content-Type": "application/json",
+             },
+             data: JSON.stringify(data),
+             success: function(response) {
+                 console.log(response);
+                 flashMsg(response.message, 'success');
+                },   
+             error: function(xhr, status, error) {
+                 console.log(error);
+                 flashMsg(error, 'fail');
+             }
+         });
+    });
+ 
+ });
+
+$(document).ready(function() {
+  $('#delete-course').click(function() {
+    var course = $('input[name="listGroupRadio"]:checked').val();
+    console.log(course);
+    let data = {
+        'course': course,
+        'option': 'deleteCourse'
+    }
+    $.ajax({
+        url: url,
+        type: "DELETE",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+        },
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: JSON.stringify(data),
+        success: function(response) {
+            console.log(response);
+            flashMsg(response.message, 'success');
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+            flashMsg('RECORD'+' '+ error, 'fail');
+        }
+  });
+});
 });

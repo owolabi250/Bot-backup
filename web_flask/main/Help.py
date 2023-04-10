@@ -2,6 +2,7 @@
 from flask import render_template, flash, redirect, url_for, jsonify, request
 from . import Main 
 from .form import  ResetPasswordForm
+from models.Schedule import Create_Schedule as Schedule
 from flask_login import current_user, login_required
 from models.baseModel import user_id
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -28,19 +29,26 @@ def help():
         return redirect(url_for('Main.login'))
     return render_template('help.html', user=user, data=history, ID=ID) 
 
-@Main.route('/settings', methods=['GET', 'POST'])
+@Main.route('/settings', methods=['GET', 'PUT'])
 @login_required
 def settings():
     ID = current_user.id
+    user_courses = Schedule(ID)
     user = current_user.User_name
     Email = current_user.Email
     phone = current_user.Phone_number
+    auto = current_user.save_history
+    target_list = []
     form = ResetPasswordForm()
+    courses = ['Python', 'React', 'Javascript', 'C']
     dic = {'user': user,
            'Email': Email,
            'phone': phone,
-           'ID': ID
+           'ID': ID,
+           'auto': auto
         }
+    for task in courses:
+        target_list.append(user_courses.Target(ID, task)[0])
     if form.validate_on_submit():
        ''' usr = models.storage.access(ID, 'id', user_id)
         if usr and check_password_hash(usr.Password, form.old_password.data):
@@ -58,4 +66,4 @@ def settings():
          #   flash('Please login to access this page', 'danger')
           #  return redirect(url_for('Main.login'))
     elif request.method == 'GET': '''
-    return render_template('settings.html', data=dic, form=form)
+    return render_template('settings.html', data=dic, form=form, target=target_list)

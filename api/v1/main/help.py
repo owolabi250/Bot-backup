@@ -76,8 +76,7 @@ def quiz(current_user):
         abort(404, 'invalid request')
     
     new_key = list(Value.keys())
-    new_key = ''.join(new_key)
-    new_key = new_key.split('.')
+    new_key = ''.join(new_key).split('.')
     new_key.pop(0)
     if request.method == 'POST':
         if quiz_answers is None:
@@ -123,9 +122,9 @@ def articles(current_user):
                 filtered_list = list(filter(lambda x: x.strip(), source))
                 return jsonify(filtered_list), 200
 
-@main_app.route('/settings/<usr_id>', methods=['POST', 'PUT', 'DELETE'])
+@main_app.route('/settings/', methods=['POST', 'PUT', 'DELETE'])
 @token_required
-def settings(current_user, usr_id):
+def settings(current_user):
     ID = current_user.id
     data = request.get_json()
     usr = storage.access(ID, 'id', user_id)
@@ -159,6 +158,7 @@ def settings(current_user, usr_id):
                 storage.save()
                 storage.close()
                 return jsonify({"message": "successfully updated"}), 200
+
             elif data.get('option') == 'password':
                 obj = data.get('old_password')
                 if obj is not None:
@@ -190,17 +190,41 @@ def settings(current_user, usr_id):
                 return jsonify({"message": "code valid"}), 200
             else:
                 abort(404, 'invalid code')
-    
+        
+        elif data.get('option') == 'checkBox':
+            opt = data.get('isChecked')
+            usr.save_history = opt
+            storage.save()
+            storage.close()
+            return jsonify({"message": "success"}), 200
+
     if request.method == 'DELETE':
         ID = current_user.id
-        if ID != usr_id:
-            abort(404, 'invalid credentials')
-        else:
-            history = redis_client.get('conversation_history')
-            if history is None:
-                return jsonify({"message": "no history"}), 200
+        if data.get('option') == 'chatHistory':
+            if ID != data.get('id'):
+                abort(404, 'invalid credentials')
+            else:
+                history = redis_client.get('conversation_history')
+                if history is None:
+                    return jsonify({"message": "no history"}), 200
+                chat_history = json.loads(history.decode('utf-8'))
+                chat_history = list(filter(lambda x: x['ID'] != ID, chat_history))
+                redis_client.set('conversation_history', json.dumps(chat_history))
+                return jsonify({"message": "successfully deleted"}), 200
+        elif data.get('option') == 'deleteCourse':
+            course_list = cs(ID)
+            key = data.get('course')
+            course = course_list.Target(ID, key)[1]
+            file = None
+            course_file = course.get(key)
+            if course_file:
+                for item in course_file:
+                    if item.user_ID == ID:
+                        file = item
+                    storage.delete(file)
+                    storage.save()
+                storage.close()
+                return jsonify({"message": f"deleted {key} tutorial successfully"}), 200
+            abort(404, 'record not found')
 
-            chat_history = json.loads(history.decode('utf-8'))
-            chat_history = list(filter(lambda x: x['ID'] != ID, chat_history))
-            redis_client.set('conversation_history', json.dumps(chat_history))
-            return jsonify({"message": "successfully deleted"}), 200
+

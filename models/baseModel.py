@@ -79,6 +79,7 @@ class user_id(Base, UserMixin):
     Phone_number = Column(String(100))
     Created_at = Column(DateTime, default=datetime.utcnow)
     Updated_at = Column(DateTime)
+    save_history = Column(Boolean)
     schedules = relationship('User', backref='January', lazy='dynamic')
     auto_schedules = relationship('AutoSchedule', backref='PythonDB', lazy='dynamic')
     JScourse = relationship('JSCourse', backref='JSCourse', lazy='dynamic')

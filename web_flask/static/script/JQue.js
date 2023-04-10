@@ -29,7 +29,6 @@ $(document).ready(function() {
     var textarea = $("#my-chat-input");
     var container = $('.chat-container');
     container.scrollTop(container.prop("scrollHeight"));
-
     // Attach the focus and blur events
     textarea.on("focus", function() {
         // Slide up the nav element

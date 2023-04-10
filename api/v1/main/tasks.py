@@ -158,6 +158,7 @@ def auto_dash(current_user):
                                     Days=date,
                                     Course=topic["Course"],
                                     Topic=topic["Topic"],
+                                    Target=False,
                                     Reminder=req_json.get("Reminder"),
                                     Created_at=now)
                     storage.new(task)

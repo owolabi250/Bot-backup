@@ -124,3 +124,22 @@ class Create_Schedule(User):
         models.storage.close()
         return new_dict_2
 
+    def Target(self, my_id, course):
+        data = self.__data[0].get(my_id)
+        file = {
+                "Python" : data.auto_schedules.all(),
+                "Javascript" : data.JScourse.all(),
+                "React" : data.Reactcourse.all(),
+                "C" : data.C_course.all()
+            }
+        if not file.get(course):
+            return (0, file)
+        else:
+            python_Target = [x.Target for x in file.get(course)]
+            python_Target = [int(b) for b in python_Target]
+            python_mean_Target = sum(python_Target) / len(python_Target)
+            python_mean_Target = round(python_mean_Target, 2)
+            return (python_mean_Target, file)
+        
+
+

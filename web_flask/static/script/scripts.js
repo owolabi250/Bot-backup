@@ -1,11 +1,3 @@
-/*!
-    * Start Bootstrap - SB Admin v7.0.5 (https://startbootstrap.com/template/sb-admin)
-    * Copyright 2013-2022 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
-    */
-    // 
-// Scripts
-// 
 
 window.addEventListener('DOMContentLoaded', event => {
 
@@ -22,23 +14,10 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+});
 
-
-  //  const dropdownButton = document.getElementById("my-dropdownMenuButton");
-   // const dropdownMenu = document.querySelector(".my-dropdown-menu");
-
-   // dropdownButton.addEventListener("click", function() {
-   // dropdownMenu.classList.toggle("show");
-   // });
-
-  //  dropdownMenu.addEventListener("mouseout", function() {
-  //  dropdownMenu.classList.remove("show");
-   // });
-   // dropdownMenu.addEventListener("mouseover", function() {
-   // dropdownMenu.classList.add("show");
-   // });
-
-
+$(document).ready(function() {
+    console.log("ready!");
 });
 
 function getCookie(cname) {
@@ -214,8 +193,13 @@ $(document).ready(function() {
     });
   });
 
-
-
-
-
-
+/*$(document).ready(function() {
+    let choice = $('#flexSwitchCheckReverse').val();
+    console.log('choice');
+    if (choice === 1) {
+        $('#flexSwitchCheckReverse').attr('checked', true);
+    }
+    else {
+        $('#flexSwitchCheckReverse').attr('checked', false);
+    }
+}); */

@@ -1,5 +1,6 @@
 #!/usr/bin/python3i
 from models.Schedule import Create_Schedule
+from .baseModel import user_id
 import os
 import models
 import openai
@@ -107,6 +108,7 @@ class Checker:
             or questions asked
         """
         try:
+            usr = models.storage.access(self.my_id, 'id', user_id)
             if message is None:
                 opt = self.message
             else:
@@ -129,10 +131,11 @@ class Checker:
             """
             with open('response.json', 'a') as file:
                 json.dump(answer, file)
-            conversation_history.append({"role": "bot", "content": answer,
+            if not usr.save_history:
+                conversation_history.append({"role": "bot", "content": answer,
                                         "ID": self.my_id})
-            redis_client.set('conversation_history', json.dumps(
-                                                    conversation_history))
+                redis_client.set('conversation_history', json.dumps(
+                                                        conversation_history))
             return answer.strip()
         except Exception as e:
             logging.exception("Error invoking chatbot")

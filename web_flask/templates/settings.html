@@ -1,5 +1,4 @@
 {% extends 'index.html' %}
-
 {% block content %}
 <div id="layoutSidenav_content" style="background-color: #212121;">
     <main>
@@ -15,23 +14,23 @@
                 <div class="card-body">
                     <label for="exampleColorInput" class="form-label" style="color: #fff;">Username</label>
                     <div class="input-group mb-3">
-                        <input type="hidden" name="user ID" value="{{ data['ID'] }}" id='usr-id'>
+                        <input type="hidden" name="user ID" value="{{ data.get('ID') }}" id='usr-id'>
                         <input class="form-control form-control-sm" type="text" value="{{ data.get('user') }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-outline-success me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{ data['user'] }}">Edit</button>
+                            <button class="btn btn-outline-success me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="{{ data.get('user') }}">Edit</button>
                         </div>
                     </div>
                     <label for="exampleColorInput" class="form-label" style="color: #fff">Email</label>
                     <div class="input-group mb-3">
-                        <input class="form-control form-control-sm" type="text" value="{{ data['Email'] }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
+                        <input class="form-control form-control-sm" type="text" value="{{ data.get('Email') }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-outline-success me-md-2" type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
                         </div>
                     </div>
                     <label for="exampleColorInput" class="form-label" style="color: #fff">Phone Number</label>
                     <div class="input-group mb-3">
-                        {% if data['phone'] %}
-                        <input class="form-control form-control-sm" type="text" value="{{ data['phone'] }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
+                        {% if data.get('phone') %}
+                        <input class="form-control form-control-sm" type="text" value="{{ data.get('phone') }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
                         <button class="btn btn-outline-success me-md-2" type="button" data-bs-toggle='modal' data-bs-target='#exampleModal4'id='add-number'>Edit</button>
                         {% else %}
                             <input class="form-control form-control-sm" type="text" value="Phone Number not provided" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
@@ -98,14 +97,14 @@
 			            <div class="input-group mb-3">
 				            <input class="form-control form-control-sm" type="text" value="Disable chat history" style="background-color: transparent; border: none; color: #fff;" aria-label="Disabled input exam    ple" disabled readonly>
                                 <div class="form-check form-switch form-check-reverse">
-                                    <input class="form-check-input" type="checkbox" style="position: absolute; right: 15px; width: 3rem; max-width: 3rem;" role="switch" id="flexSwitchCheckReverse">
+                                    <input class="form-check-input" type="checkbox" style="position: absolute; right: 15px; width: 3rem; max-width: 3rem;" role="switch" value="{{ data['auto'] }}" id="flexSwitchCheckReverse">
                                 </div>
                         </div>
                     <label for="exampleColorInput" class="form-label" style="color: #fff;">Course</label>
                         <div class="input-group mb-3">
                             <input class="form-control form-control-sm" type="text" value="Delete Course" style="background-color: transparent; border: none; color: #fff;" aria-label="Disabled input example" disabled readonly>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-outline-danger btn-sm me-md-2" type="button">Delete</button>
+                                <button class="btn btn-outline-danger btn-sm me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Delete</button>
                             </div>
                         </div>
                       <div class="input-group mb-3">
@@ -157,7 +156,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="text-center"> We will need to verify your old email address {{ data['Email'] }} in other to change it.</p>
+                        <p class="text-center"> We will need to verify your old email address {{ data.get('Email') }} in other to change it.</p>
                         <p class="text-center"> Lost access to your email address?, please contact your email provider to regain access.</p>
                     </div>
                     <div class="d-grid gap-2">
@@ -199,7 +198,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-center"> We have sent a verification code to this email {{ data['Email'] }}. Please enter the code below to verify your email address.</p>
+                    <p class="text-center"> We have sent a verification code to this email {{ data.get('Email') }}. Please enter the code below to verify your email address.</p>
                     <label for="verify-code" class="col-form-label">Verification code</label>
                     <input type="text" class="form-control" id="verify-code">
                     <small class="text-muted"><a href="#" class="text-decoration-none">Didn't recieve a code or it expired? Resend code</a></small>
@@ -315,6 +314,44 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-danger" id='clear-chatHistory'>Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Delete course data</b></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="Python" id="firstRadio" checked>
+                                <label class="form-check-label" for="firstRadio">Python</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="badge bg-dark rounded-pill" id="target-display">{{ target[0] }}%</span>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="Javascript" id="secondRadio">
+                                <label class="form-check-label" for="secondRadio">Javascript</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="badge bg-dark rounded-pill" id="target-display">{{ target[2] }}%</span>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="React" id="thirdRadio">
+                                <label class="form-check-label" for="thirdRadio">React</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="badge bg-dark rounded-pill" id="target-display">{{ target[1] }}%</span>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="C" id="thirdRadio">
+                                <label class="form-check-label" for="thirdRadio">C</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="badge bg-dark rounded-pill" id="target-display">{{ target[3] }}%</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" id='delete-course'>Delete</button>
                     </div>
                 </div>
             </div>

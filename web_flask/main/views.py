@@ -42,7 +42,8 @@ def missed():
     bot = Create_Schedule(my_id)
     if auto:
         dic = bot.View(my_id, 'missed', course)
-        return render_template('task_status.html', data=dic, state=auto, user=user)
+        return render_template('task_status.html', data=dic,
+                               state=auto, user=user)
     else:
         dic = bot.View(my_id, 'missed')
         return render_template('task_status.html', data=dic, user=user)
@@ -58,7 +59,8 @@ def daily():
     bot = Create_Schedule(my_id)
     if auto:
         dic = bot.View(my_id, 'daily', course)
-        return render_template('task_status.html', data=dic, state=auto, user=user)
+        return render_template('task_status.html', data=dic,
+                               state=auto, user=user)
     else:
         dic = bot.View(my_id, 'daily')
         return render_template('task_status.html', data=dic, user=user)
@@ -88,7 +90,8 @@ def upcoming():
     bot = Create_Schedule(my_id)
     if auto:
         dic = bot.View(my_id, 'upcoming', course)
-        return render_template('task_status.html', data=dic, state=auto, user=user)
+        return render_template('task_status.html', data=dic,
+                               state=auto, user=user)
     else:
         dic = bot.View(my_id, 'upcoming')
         return render_template('task_status.html', data=dic, user=user)
@@ -118,9 +121,11 @@ def quiz():
     if not quiz_data: # check if global variable is not empty
         dic = bot.Question()
         quiz_data = dic # store results in global variable
-        return render_template('quiz.html', data=dic, data_ID=data_id, user=user)
+        return render_template('quiz.html', data=dic, data_ID=data_id,
+                               user=user)
     else:
-        return render_template('quiz.html', data=quiz_data, data_ID=data_id, user=user)
+        return render_template('quiz.html', data=quiz_data, data_ID=data_id,
+                               user=user)
 
 @Main.route('/auto_dash', methods=['GET'])
 @login_required
@@ -147,7 +152,8 @@ def dashboard():
         key = [i for i in doc if i.user_ID == ID]
     if key:
         auto = True
-        return render_template('auto_dash.html', data=doc, status=auto, user=user)
+        return render_template('auto_dash.html', data=doc, status=auto,
+                                                            user=user)
     else:
         return render_template('auto_reg.html')
 
