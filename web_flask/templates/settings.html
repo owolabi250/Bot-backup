@@ -24,7 +24,7 @@
                     <div class="input-group mb-3">
                         <input class="form-control form-control-sm" type="text" value="{{ data.get('Email') }}" style="background-color: #3d3d3d; color: #fff;" aria-label="Disabled input example" disabled readonly>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-outline-success me-md-2" type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                            <button class="btn btn-outline-success me-md-2" type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" value="email-reset" id="mail-reset">Edit</button>
                         </div>
                     </div>
                     <label for="exampleColorInput" class="form-label" style="color: #fff">Phone Number</label>
@@ -55,7 +55,7 @@
         </div>
             <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" id="clear-modal">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel6"><b>Set up Two Factor Auth</b></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -110,20 +110,20 @@
                       <div class="input-group mb-3">
                           <input class="form-control form-control-sm" type="text" value="Customise learning pace" style="background-color: transparent; border: none; color: #fff;" aria-label="Disabled input example" disabled readonly>
                           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                              <button class="btn btn-outline-info btn-sm me-md-2" type="button">Edit</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Edit</button>
                             </div>
                         </div>
                     <label for="exampleColorInput" class="form-label" style="color: #fff;">Account Removal</label>
                         <p class="fw-light text-wrap" style="color: #fff; max-width: 30rem; font-size: 12px;">Disabling your account means you can retrive it anytime you want. If you delete your account, you will not be able to recover it.</p>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <button type="button" class="btn btn-danger btn-sm">Disable Account</button>
-                            <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1.5rem">Delete Account</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1.5rem" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Delete Account</button>
                         </div>
                   </div>
     </div>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
+                          <div class="modal-content" id="clear-modal">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Change Username</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -150,13 +150,13 @@
         </div>
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content" id="clear-modal">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalToggleLabel" style="text-align: center;">Verify email address</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="text-center"> We will need to verify your old email address {{ data.get('Email') }} in other to change it.</p>
+                        <p class="text-center"> We will need to verify your email address {{ data.get('Email') }} real quick.</p>
                         <p class="text-center"> Lost access to your email address?, please contact your email provider to regain access.</p>
                     </div>
                     <div class="d-grid gap-2">
@@ -192,7 +192,7 @@
         </div>
     <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content" id="clear-modal">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalToggleLabel2" style="float: center;"><b>Enter code</b></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -211,7 +211,7 @@
     </div>
     <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content" id="clear-modal">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Enter email address</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -238,9 +238,28 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" id="clear-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Account removal confirmation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center"><iconify-icon icon="fa-solid:sad-tear" height="60" width="60"></iconify-icon></h5>
+                    <p class="text-center" style="font-size: 20px;">Warning the following action is irreversible and all your data would be erased</p>
+                    <p class="text-center" style="font-size: 20px;">Are you sure you want to delete your account?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-bs-toggle="modal" id="account-removal">Confirm</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" id="clear-modal">
                         <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel5"><b>Update your password</b></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -303,7 +322,7 @@
         </form>
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" id="clear-modal">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Clearing Chat history</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -320,7 +339,7 @@
         </div>
         <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" id="clear-modal">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Delete course data</b></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -345,7 +364,7 @@
                             <li class="list-group-item">
                                 <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="C" id="thirdRadio">
                                 <label class="form-check-label" for="thirdRadio">C</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span class="badge bg-dark rounded-pill" id="target-display">{{ target[3] }}%</span>
+                                    <span class="badge bg-dark rounded-pill" id="target-display">{{ target[3] }}%</span>
                             </li>
                         </ul>
                     </div>
@@ -356,6 +375,45 @@
                 </div>
             </div>
         </div>
-</main>
+        <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="clear-modal">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Customise learning Pace</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Set interval between next topic</p>
+                            <div class='flex-btn' style="display: grid; place-items: start;">
+                                <div class="btn-group" role="group" aria-label="Basic example" style="background-color: black;">
+                                   <button type="button" id="decrease-btn" style="background-color: transparent; border: none;"><iconify-icon icon="ooui:arrow-previous-ltr" width="40" style="color: #29990a;" id='icon-btn'></iconify-icon></button>
+                                    <span class="input-group-text" value="0" id="learning-pace">0  Days</span>
+                                    <button type="button" id="increase-btn" style="background-color: transparent; border: none;"><iconify-icon icon="ooui:arrow-previous-rtl" width="40" style="color: #29990a;" id='Icon-btn'></iconify-icon></button>
+                                </div>
+                                </div>
+                            <div class="dropdown" style="display: flex; justify-content: center; align-items: center;">
+                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Course
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li class="dropdown-item active">All courses</li>
+                                            <li><button type="button" class="dropdown-item" id="Mypace">Python</button></li>
+                                            <li><button type="button" class="dropdown-item" id="Mypace">React</button></li>
+                                            <li><button type="button" class="dropdown-item" id="Mypace">Javascript</button></li>
+                                            <li><button type="button" class="dropdown-item" id="Mypace">C</button></li>
+                                    </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="save-pace">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block modal %}
+                 {{ super() }}
+        </div>
+            {% endblock %}
+    </main>
 <footer class="py-4 bg-dark mt-auto">
 {% endblock %}

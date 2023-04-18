@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .res import get_recommendations, get_resource
 from flask_mail import Message
 from .netT import send_email
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import yaml
 import redis
@@ -128,6 +128,7 @@ def settings(current_user):
     ID = current_user.id
     data = request.get_json()
     usr = storage.access(ID, 'id', user_id)
+    course_list = cs(ID)
     if request.method == 'PUT':
         if data is None:
             abort(404, 'invalid credentials')
@@ -141,6 +142,8 @@ def settings(current_user):
                         storage.save()
                         storage.close()
                         return jsonify({"message": "successfully updated"}), 200
+                    else:
+                        abort(404, 'invalid credentials')
             elif data.get('option') == 'emailreset':
                 email = data.get('email')
                 key = data.get('passkey')
@@ -152,6 +155,29 @@ def settings(current_user):
                     storage.save()
                     storage.close()
                     return jsonify({"message": "successfully updated"}), 200
+                else:
+                    abort(404, 'invalid credentials')
+            elif data.get('option') == 'course_tempo':
+                course = data.get('course')
+                course_file = course_list.Target(ID, course)[1]
+                delta = 0
+                if course_file:
+                    tempo = data.get('tempo')
+                    course_file = course_file.get(course)
+                    now = datetime.utcnow().date()
+                    for item in course_file:
+                        cur_date = datetime.strptime(item.Days, '%Y-%m-%d').date()
+                        #cur_date = cur_date + timedelta(days=tempo)
+                        if cur_date >= now:
+                            delta = delta + tempo
+                            cur_date = cur_date + timedelta(days=delta)
+                            item.Days = cur_date.strftime('%Y-%m-%d')
+                    storage.save()
+                    storage.close()
+                    return jsonify({"message": "successfully updated"}), 200
+                else:
+                    abort(404, 'Not registered for course')
+
             elif data.get('option') == 'contact':
                 usr.Phone_number = data.get('phone_number')
                 usr.Updated_at = datetime.now().strftime("%Y-%m-%d")
@@ -212,7 +238,6 @@ def settings(current_user):
                 redis_client.set('conversation_history', json.dumps(chat_history))
                 return jsonify({"message": "successfully deleted"}), 200
         elif data.get('option') == 'deleteCourse':
-            course_list = cs(ID)
             key = data.get('course')
             course = course_list.Target(ID, key)[1]
             file = None
@@ -227,4 +252,19 @@ def settings(current_user):
                 return jsonify({"message": f"deleted {key} tutorial successfully"}), 200
             abort(404, 'record not found')
 
-
+        elif data.get('option') == 'deleteAccount':
+            confirmDelete = data.get('confirmDelete')
+            user = storage.view(ID)[0].get(ID)
+            Auto_courses = ["Python", "C", "React", "Javascript"]
+            Delete_auto_courses = course_list.DeleteAll(ID, Auto_courses)
+            Delete_custom_courses = course_list.Delete(ID, None)
+            if Delete_auto_courses and Delete_custom_courses:
+                if user.id == ID and confirmDelete:
+                    storage.delete(user)
+                    storage.save()
+                storage.close()
+                return jsonify({"message": "Account deleted"}), 200
+        
+            abort(404, 'invalid request')
+    else:
+        abort(404, 'invalid request')

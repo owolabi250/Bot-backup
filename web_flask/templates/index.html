@@ -37,7 +37,7 @@
 		 <!-- Navbar Search-->
           	  <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <input class="form-control" type="text" id="search-bar" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -175,53 +175,6 @@
                          </div>
                      </div>
                      <br>
-                        <!-- <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body"> View Tasks</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <div class="dropdown">
-                                            <a class="btn btn-primary dropdown-toggle" href="{{ url_for('Main.view') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Details</a>
-                                            <ul class="dropdown-menu" aria-labelledby="my-dropdownMenuButton">
-                                               <li><a class="dropdown-item" href="{{ url_for('Main.view') }}">All</a></li>
-						                        <li><a class="dropdown-item" href="{{ url_for('Main.daily') }}">Daily</a></li>
-                                                <li><a class="dropdown-item" href="{{ url_for('Main.upcoming') }}">Upcoming</a></li>
-                                                <li><a class="dropdown-item" href="{{ url_for('Main.missed') }}">Missed</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Create new task</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" id="add-new" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!--      <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Quiz Section</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <p> hey the following task is due, start Quiz now</p>
-                                        <a class="small text-white stretched-link" href="{{ url_for('Main.quiz') }}">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                        </div> -->
-                            <!-- <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Delete task</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4" id="chart-body">
@@ -309,6 +262,25 @@
                             </div>
                         </div>
                     </div>
+    {% block modal %}
+    <div class="modal fade" id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content" id="clear-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel8"> </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: #fff; background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center font-monospace" id="search-text"> </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    </div>
+
                 </main>
                 <footer class="py-4 bg-dark mt-auto">
 		{% endblock %}

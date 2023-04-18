@@ -1152,3 +1152,13 @@
 6: 7. How do you create a task in Python asyncio?
 7: 8. What is the difference between asyncio.sleep() and time.sleep()?
 8: 9. What is the purpose of the asyncio
+0: 1. What is MongoDB?
+1: 2. What are the advantages of using MongoDB?
+2: 3. What type of data can be stored in MongoDB?
+3: 4. How does MongoDB handle data replication?
+4: 5. What is the difference between MongoDB and a relational database?
+5: 6. What is the MongoDB query language?
+6: 7. How does MongoDB scale horizontally?
+7: 8. What is the MongoDB Atlas service?
+8: 9. What is the MongoDB document model?
+9: 10. How does MongoDB ensure data security?

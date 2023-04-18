@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from models.baseModel import User, Base, user_id 
+from models.baseModel import User, Base, user_id
 
 
 class DBstorage:
@@ -20,11 +20,14 @@ class DBstorage:
         Mysql_Db = os.getenv('MYSQL_DB')
         port = os.getenv('PORT')
         self.__engine = create_engine('mysql://{}:{}@{}:{}/{}'.
-                                                 format(Mysql_User,
-                                                        Mysql_Pass,
-                                                        Mysql_Host,
-                                                        port,
-                                                        Mysql_Db), pool_recycle=3600)
+                                      format(Mysql_User,
+                                             Mysql_Pass,
+                                             Mysql_Host,
+                                             port,
+                                             Mysql_Db),
+                                      pool_recycle=3600,
+                                      pool_size=10,
+                                      max_overflow=20)
     """
        The View method is used to get the user data from the database
        it takes in the user_id as an argument and returns a dictionary
@@ -45,14 +48,14 @@ class DBstorage:
         file = data.schedules
         for items in file:
             tasks[items.id] = {
-                    "Date" : items.Days,
-                    "Course" : items.Course,
-                    "Topic" : items.Topic,
-                    "Reminder" : items.Reminder,
-                    "Target" : items.Target,
-                    "Average" : items.Average,
-                    "Created_at" : items.Created_at,
-                    "Updated_at" : items.Updated_at
+                    "Date": items.Days,
+                    "Course": items.Course,
+                    "Topic": items.Topic,
+                    "Reminder": items.Reminder,
+                    "Target": items.Target,
+                    "Average": items.Average,
+                    "Created_at": items.Created_at,
+                    "Updated_at": items.Updated_at
                 }
         return my_dict, tasks
 
@@ -63,10 +66,10 @@ class DBstorage:
     """
     def access(self, obj, key, arg):
         index = {'Email': user_id.Email,
-                 'Password' : user_id.Password,
-                 'User_name' : user_id.User_name,
-                 'id' : user_id.id
-                }
+                 'Password': user_id.Password,
+                 'User_name': user_id.User_name,
+                 'id': user_id.id}
+
         query = self.__session.query(arg)
         data = query.filter(index[key] == obj).first()
         return data
@@ -75,8 +78,8 @@ class DBstorage:
         """
             add the object to the current database session
         """
-        self.__session.add(obj) 
-    
+        self.__session.add(obj)
+
     def save(self):
         """
             commit all changes of the current database session

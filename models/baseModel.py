@@ -141,7 +141,3 @@ class user_id(Base, UserMixin):
             if timestamp - data.get('expiration_time') < 600:
                 return True
         return False
-
-    
-
-

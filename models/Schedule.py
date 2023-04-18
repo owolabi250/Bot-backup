@@ -61,12 +61,15 @@ class Create_Schedule(User):
             Deletes and modifies data queried from the database by object ID
         """
         deldata = models.storage.view(my_id)[0].get(my_id)
+        deldata = deldata.schedules.all()
         if deldata is None:
-            return f"data not found confirm data ID"
+            return False
         else:
-            models.storage.delete(deldata)
-            models.storage.save()
+            for data in deldata:
+                models.storage.delete(data)
+                models.storage.save()
             models.storage.close()
+            return True
 
 
     def View(self, my_id, choice=None, table=None):
@@ -140,6 +143,27 @@ class Create_Schedule(User):
             python_mean_Target = sum(python_Target) / len(python_Target)
             python_mean_Target = round(python_mean_Target, 2)
             return (python_mean_Target, file)
-        
+    
+    def DeleteAll(self, my_id, course):
+        course_file = []
+        for idx, file  in enumerate(course):
+            if idx > 0:
+                break
+            course_file.append(self.Target(my_id, file)[1])
+
+        course_file = course_file[0]
+        status = False
+        while any(course_file.values()):
+            for _, value in course_file.items():
+                if value == []:
+                    continue
+                for val in value:
+                    models.storage.delete(val)
+                    models.storage.save()
+                    value.remove(val)
+                    status = True
+            models.storage.close()
+        return status
+
 
 

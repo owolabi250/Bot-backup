@@ -192,14 +192,3 @@ $(document).ready(function() {
       });
     });
   });
-
-/*$(document).ready(function() {
-    let choice = $('#flexSwitchCheckReverse').val();
-    console.log('choice');
-    if (choice === 1) {
-        $('#flexSwitchCheckReverse').attr('checked', true);
-    }
-    else {
-        $('#flexSwitchCheckReverse').attr('checked', false);
-    }
-}); */

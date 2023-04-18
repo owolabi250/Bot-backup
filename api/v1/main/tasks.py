@@ -11,10 +11,12 @@ from models.baseModel import (User, user_id, AutoSchedule, JSCourse,
 from functools import wraps
 from web_flask import mail
 from flask_mail import Message
+from .netT import search, get_wiki_briefs
+from ratelimit import limits, sleep_and_retry
 import jwt
 import json
 
-
+dictionary = {}
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -35,6 +37,8 @@ def token_required(f):
 
 @main_app.route('/tasks', methods=['GET', 'POST'])
 @token_required
+@sleep_and_retry
+@limits(calls=10, period=60)
 def task(current_user):
     ID = current_user.id
     bot = cs(ID)
@@ -60,6 +64,8 @@ def task(current_user):
 
 @main_app.route('/tasks/<int:my_id>', methods=['GET', 'PUT', 'DELETE'])
 @token_required
+@sleep_and_retry
+@limits(calls=10, period=60)
 def get_task(current_user, my_id):
     ID = current_user.id
     data = storage.view(ID)[0].get(ID)
@@ -106,6 +112,8 @@ def get_task(current_user, my_id):
 
 @main_app.route('/reminder', methods=['POST'])
 @token_required
+@sleep_and_retry
+@limits(calls=10, period=60)
 def reminder(current_user):
     ID = current_user.id
     if request.method == 'POST':
@@ -116,6 +124,8 @@ def reminder(current_user):
 
 @main_app.route('/auto-dash', methods=['POST'])
 @token_required
+@sleep_and_retry
+@limits(calls=10, period=60)
 def auto_dash(current_user):
     ID = current_user.id
     data = storage.view(ID)[0].get(ID)
@@ -167,5 +177,37 @@ def auto_dash(current_user):
         else:
             return jsonify({"message": "Course not found"}), 400
  
+@main_app.route('/search', methods=['POST'])
+@token_required
+@sleep_and_retry
+@limits(calls=10, period=60)
+def searchBar(current_user):
+    req_json = request.get_json()
+    data = req_json.get('text')
+    if request.method == 'POST':
+        doc = None
+        if req_json.get('option') == 'search':
+            try:
+                if data in dictionary:
+                    print("using the dictionary")
+                    return jsonify(dictionary[data]), 200
+                else:
+                    doc = search(data)
+                    if doc:
+                        dictionary[data] = doc
+                        print("using the wikipedia module")
+                        return jsonify(doc), 200
+                    
+            except:
+                pass
+            if doc is None:
+                doc = get_wiki_briefs(data)
+                if doc:
+                    print("using the get_wiki module")
+                    doc = doc.get('summary')
+                    doc = ' '.join(doc)
+                    dictionary[data] = doc
+                    return jsonify(doc), 200
+                return jsonify({"message" : "No results found"}), 404
 
 

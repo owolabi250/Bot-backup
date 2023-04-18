@@ -9,6 +9,36 @@ let flashMsg = function(msg, type) {
         message.hide();
     }, 7000);
 }
+let loader = function(btn) {
+		  $(btn).html(
+              '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
+     );
+}
+
+let RequestCall = function(type, url, data, btn, text, callback) {
+     $.ajax({
+        url: url,
+        type: type,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: JSON.stringify(data),
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
+        },
+        success: function(response) {
+            
+            callback(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Error', textStatus, errorThrown);
+            $(btn).html(text).find('span').remove();
+            flashMsg(errorThrown, 'fail');
+        }
+    });
+}
+
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -42,121 +72,75 @@ $(document).ready(function () {
                 'Value': recipientVal,
                 'option': 'username'
             };
-           $.ajax({
-          url: url,
-          type: 'PUT',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: JSON.stringify(data),
-          beforeSend: function(xhr) {
-            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-          },
-          success: function(response) {
-            // upon success get response from request and append response to the chatbot div
-             location.reload();
-
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            // upon error log error message and output a flash message on the chatbot div
-            console.log('Error', textStatus, errorThrown);
-            $('#nav-id').css('border', '.2em solid #FF5349');
-            flashMsg(errorThrown, 'fail');
-          }
-        });
+            RequestCall('PUT', url, data, null, null, function(response) {
+                location.reload();
+            });
       });
     })
 
 $(document).ready(function () {
+    let opt;
+    $("#mail-reset").click(function() {
+        opt =  $(this).val();
+        console.log(opt);
+    });
     $('#send-confirm').on('click', function() {
-        $(this).html(
-            '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
-    );
-        xhr = $.ajax({
-            url: url,
-            type: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({'option': 'email'}),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-            },
-            success: function(response) {
-                // upon success get response from request and append response to the chatbot div
-                $("#send-confirm").html("Success!").find('span').remove();
-                 $('#exampleModalToggle2').modal('show');
-    },
-
-            error: function(jqXHR, textStatus, errorThrown) {
-                // upon error log error message and output a flash message on the chatbot div
-                console.log('Error', textStatus, errorThrown);
-                $("#myButton").html("Error!").find('span').remove();
-            }
-
+        let btn = "#send-confirm";
+        loader(btn);
+        let text = "Send verification code"
+        xhr = RequestCall('POST', url, {'option': 'email'}, btn, text, function(response) {
+            $("#send-confirm").html(text).find('span').remove();
+            $('#exampleModalToggle2').modal('show');
         });
+
     });
     $('#send-verifyCode').click(function() {
-        $(this).html(
-            '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
-        );
         const data = {}
         var code = $('#verify-code').val();
         data['code'] = code;
         data['option'] = 'confirmation';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify(data),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-            },
-            success: function(data) {
-                $("#send-verifyCode").html("Success!").find('span').remove();
+        let btn = "#send-verifyCode";
+        loader(btn);
+        let text = "Next"
+        RequestCall('POST', url, data, btn, text, function(response) {
+            $(btn).html(text).find('span').remove();
+            if (opt === 'email-reset') {
                 $('#exampleModalToggle3').modal('show');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // upon error log error message and output a flash message on the chatbot div
-                console.log('Error', textStatus, errorThrown);
-                $("#send-verifyCode").html("Error!").find('span').remove();
+            } else {
+                $('#exampleModalToggle4').modal('show');
             }
         });
+        
     });
-    $('#send-verifyEmail').click(function() {
-        $(this).html(
-            '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
-        );
-        const data = {}
-        var email = $('#email-reset').val();
-        var passkey = $('#password-reset').val();
-        data['email'] = email;
-        data['passkey'] = passkey;
-        data['option'] = 'emailreset';
-        $.ajax({
-            url: url,
-            type: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify(data),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-            },
-            success: function(data) {
-                console.log(data)
-                $("#send-verifyEmail").html("Sent").find('span').remove();;
+        $('#send-verifyEmail').click(function() {
+            const data = {}
+            var email = $('#email-reset').val();
+            var passkey = $('#password-reset').val();
+            data['email'] = email;
+            data['passkey'] = passkey;
+            data['option'] = 'emailreset';
+            let btn = "#send-verifyEmail";
+            loader(btn);
+            let text = "Sent"
+
+            RequestCall('PUT', url, data, btn, text, function(response) {
+                $("#send-verifyEmail").html(text).find('span').remove();
+                flashMsg("Email Reset", "success");
                 location.reload();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                // upon error log error message and output a flash message on the chatbot div
-                console.log('Error', textStatus, errorThrown);
-                $("#send-verifyEmail").html("Error").find('span').remove();
-            }
+            });
+
+        });
+    $('#account-removal').click(function() {
+        const data = {}
+        data['confirmDelete'] = true;
+        data['option'] = 'deleteAccount';
+
+        RequestCall('DELETE', url, data, null, null, function(response) {
+            flashMsg(response.message, "success");
+            window.location.replace('/login');
         });
     });
+
 });
 
 $("#cancel-btn").click(function() {
@@ -171,33 +155,16 @@ $(document).ready(function () {
     $("#Mycontact").click(function() {
         console.log('clicked')
         let data = {}
-        $(this).html(
-            '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...'
-    );
+        let btn = "Mycontact"
+        loader(btn);
         let phone_number = $('#phone-number').val();
         data['phone_number'] = phone_number;
         data['option'] = 'contact';
-        xhr = $.ajax({
-            url: url,
-            type: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify(data),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-            },
-            success: function(response) {
-                console.log(response)
-                $("#phone-contact").find('span').remove();
-                flashMsg(response.message, 'success');
-                location.reload();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error', textStatus, errorThrown);
-                $("#phone-contact").find('span').remove();
-                flashMsg(errorThrown, 'fail');
-            }
+        let btn2 = "#phone-contact";
+        xhr = RequestCall('PUT', url, data, btn2, null, function(response) {
+            $(btn2).find('span').remove();
+            flashMsg(response.message, 'success');
+            location.reload();
         });
     }); 
 });
@@ -214,6 +181,7 @@ $(document).ready(function() {
           "confirm_password": $('#new-passC').val(),
           "option": "password"
         }
+
     $.ajax({
       type: "PUT",
       url: url,
@@ -232,15 +200,8 @@ $(document).ready(function() {
           console.log(message)
         if (status == "success") {
           // Display success message
-          $(".modal-body").prepend(
-            '<div class="alert alert-success" role="alert">' +
-              message +
-              "</div>"
-          );
-            setTimeout(function() {
-            $(".alert").remove();
-          }, 1000);
             location.reload();
+            flashMsg(message, 'success');
         } else {
           // Display error message
           $(".modal-body").prepend(
@@ -263,23 +224,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#clear-chatHistory').click(function() {
         var id = $('#usr-id').val();
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({'option': 'chatHistory', 'id': id}),
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-            },
-            success: function(data) {
-                flashMsg(data.message, 'success');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log('Error', textStatus, errorThrown);
-                flashMsg(errorThrown, 'fail');
-            }
+        RequestCall('DELETE', url, {'option': 'chatHistory', 'id': id}, null, null, function(response) {
+            flashMsg(response.message, 'success');
         });
     });
 });
@@ -304,25 +250,10 @@ $('#flexSwitchCheckReverse').change(function() {
         } else {
             isChecked = 'false';
         }
-         $.ajax({
-             url: url,
-             type: "POST",
-             beforeSend: function(xhr) {
-                 xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-             },
-             headers: {
-                 "Content-Type": "application/json",
-             },
-             data: JSON.stringify(data),
-             success: function(response) {
-                 console.log(response);
-                 flashMsg(response.message, 'success');
-                },   
-             error: function(xhr, status, error) {
-                 console.log(error);
-                 flashMsg(error, 'fail');
-             }
-         });
+        
+        RequestCall('POST', url, data, null, null, function(response) {
+            flashMsg(response.message, 'success');
+        });
     });
  
  });
@@ -335,24 +266,73 @@ $(document).ready(function() {
         'course': course,
         'option': 'deleteCourse'
     }
-    $.ajax({
-        url: url,
-        type: "DELETE",
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('x-access-token', getCookie('access_token'));
-        },
-        headers: {
-            "Content-Type": "application/json",
-        },
-        data: JSON.stringify(data),
-        success: function(response) {
-            console.log(response);
+      RequestCall('DELETE', url, data, null, null, function(response) {
             flashMsg(response.message, 'success');
-        },
-        error: function(xhr, status, error) {
-            console.log(error);
-            flashMsg('RECORD'+' '+ error, 'fail');
+        });
+});
+});
+
+$(document).ready(function() {
+    var course;
+     var tempo = 0;
+     $("#decrease-btn").click(function() {
+         tempo--;
+         $('#Icon-btn').css('color', '#29990a');
+         $("#learning-pace").text(tempo + " Days");
+         if (tempo < 0) {
+             tempo=0
+             $('#icon-btn').css('color', 'red');
+            $("#learning-pace").text(tempo + " Days");
+         }
+     });
+     $("#increase-btn").click(function() {
+         tempo++;
+         $('#icon-btn').css('color', '#29990a');
+         $("#learning-pace").text(tempo + " Days");
+         if (tempo >= 7) {
+             tempo=7
+             $('#Icon-btn').css('color', 'red');
+            $("#learning-pace").text(tempo + " Days");
+         }
+     });
+
+    $(".dropdown-item").click(function() {
+
+            course = $(this).text();
+            console.log(course)
+            console.log(tempo)
+    });
+    $('#save-pace').click(function() {
+        data = {
+            "course": course,
+            "tempo" : tempo,
+            "option": "course_tempo"
         }
-  });
+        if (tempo !== 0 && course !== ' '){
+            RequestCall('PUT', url, data, null, null, function(response) {
+            flashMsg(response.message, 'success');
+        });
+        }
+        else {
+            console.log('date can\'t be zero')
+        };
+    });
 });
+
+$(document).ready(function() {
+    $("#btnNavbarSearch").click(function() {
+        let text = $('#search-bar').val();
+        let url = 'http://127.0.0.1:5001/api/v1/search/'
+        let data = {
+            'text': text,
+            'option': 'search'
+        }
+        RequestCall('POST', url, data, null, null, function(response) {
+            $("#staticBackdrop8").modal('show');
+            $("#search-text").html(response);
+            $("#staticBackdropLabel8").html('Search Results for ' + text);
+        });
+    });
 });
+
+

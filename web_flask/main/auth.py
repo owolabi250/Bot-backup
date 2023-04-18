@@ -23,7 +23,7 @@ def signup():
     if form.validate_on_submit():
         password = generate_password_hash(form.password.data)
         user = user_id(id=str(uuid.uuid4()), User_name=form.username.data,
-                       Email=form.email.data, phone_number=None, Password=password)
+                       Email=form.email.data, Password=password)
         models.storage.new(user)
         models.storage.save()
         models.storage.close()

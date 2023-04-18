@@ -143,6 +143,14 @@
     color: #000000;
 }
 
+#learning-pace, #clear-modal {
+      backdrop-filter: blur(19px) saturate(152%);
+    -webkit-backdrop-filter: blur(19px) saturate(152%);
+    background-color: rgba(17, 25, 40, 0.74);
+    border-radius: 12px;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
 .datatable-dropdown {
     color: #000000;
 }
